@@ -346,7 +346,7 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\BSP\RSKRL78L12</state>
+          <state>$PROJ_DIR$\..\BSP</state>
           <state>$PROJ_DIR$\applilet3_src</state>
           <state>$PROJ_DIR$\user_src</state>
         </option>
@@ -757,7 +757,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>RSKRL78L12_uart.a87</state>
+          <state>RSKRL78L12_lcd_demo.a87</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -1819,7 +1819,7 @@
   <group>
     <name>BSP</name>
     <file>
-      <name>$PROJ_DIR$\..\BSP\RSKRL78L12\LCD_T6022A.c</name>
+      <name>$PROJ_DIR$\..\BSP\LCD\LCD_T6022A.c</name>
     </file>
   </group>
   <group>

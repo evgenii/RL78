@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>RL78L12_lcd_demo/Debug</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>274</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+      <TerminalIO/>
+    <Debug-Log><ColumnWidth0>22</ColumnWidth0><ColumnWidth1>1219</ColumnWidth1></Debug-Log></Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-30429-17004</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>RL78L12_lcd_demo</ExpandedNode><ExpandedNode>RL78L12_lcd_demo/BSP</ExpandedNode><ExpandedNode>RL78L12_lcd_demo/Output</ExpandedNode><ExpandedNode>RL78L12_lcd_demo/applilet_src</ExpandedNode><ExpandedNode>RL78L12_lcd_demo/linker</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-23926-17331</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-12861-5582</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\applilet3_src\r_main.c</Filename><XPos>0</XPos><YPos>120</YPos><SelStart>3954</SelStart><SelEnd>3954</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\BSP\LCD\LCD_T6022A.c</Filename><XPos>0</XPos><YPos>129</YPos><SelStart>2769</SelStart><SelEnd>2769</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\BSP\BSP.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>290</SelStart><SelEnd>290</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\BSP\LCD\LCD_T6022A.h</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>1414</SelStart><SelEnd>1414</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\BSP\LCD\LCD_T6022A_RPBRL78L12_config.h</Filename><XPos>0</XPos><YPos>347</YPos><SelStart>1042</SelStart><SelEnd>1042</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-01082000><key>iaridepm.enu1</key></Toolbar-01082000></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>644</Bottom><Right>348</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>146</yscreen><sizeHorzCX>156250</sizeHorzCX><sizeHorzCY>148676</sizeHorzCY><sizeVertCX>273438</sizeVertCX><sizeVertCY>657841</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>293</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>295</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>300407</sizeHorzCY><sizeVertCX>156250</sizeVertCX><sizeVertCY>148676</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
