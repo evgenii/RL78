@@ -23,39 +23,28 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : r_cg_userdefine.h
+* File Name    : r_cg_lcd_user_RPB.c
 * Version      : Applilet3 for RL78/L12 V1.00.00 [23 Mar 2012]
 * Device(s)    : R5F10RLC
 * Tool-Chain   : IAR Systems iccrl78
-* Description  : This file includes user definition.
+* Description  : This file implements device driver for LCD module.
 * Creation Date: 30.11.2012
 ***********************************************************************************************************************/
 
-#ifndef _USER_DEF_H
-#define _USER_DEF_H
+/***********************************************************************************************************************
+Includes
+***********************************************************************************************************************/
+#include "r_cg_macrodriver.h"
+#include "r_cg_lcd_RPB.h"
+/* Start user code for include. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */
+#include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-User definitions
+Global variables and functions
 ***********************************************************************************************************************/
-
-/* Start user code for function. Do not edit comment generated here */
-#include "BSP.h"
-
-#define LED0_on()    (P3_bit.no0 = 0) 
-#define LED0_off()   (P3_bit.no0 = 1u)    
-#define LED0_toggle() (P3_bit.no0 ^= 1U)
-
-#define LED1_on()    (P4_bit.no2 = 0) 
-#define LED1_off()   (P4_bit.no2 = 1u)  
-#define LED1_toggle() (P4_bit.no2 ^= 1U)
-
-#define LED2_on()    (P5_bit.no1 = 0) 
-#define LED2_off()   (P5_bit.no1 = 1u)  
-#define LED2_toggle() (P5_bit.no1 ^= 1U)
-
-#define LED3_on()    (P5_bit.no2 = 0) 
-#define LED3_off()   (P5_bit.no2 = 1u)  
-#define LED3_toggle() (P5_bit.no2 ^= 1U)
-
+/* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-#endif
+
+/* Start user code for adding. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */

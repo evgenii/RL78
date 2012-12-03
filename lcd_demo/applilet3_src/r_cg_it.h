@@ -1,4 +1,4 @@
-/***********************************************************************************************************************
+/**********************************************************************************************************************
 * DISCLAIMER
 * This software is supplied by Renesas Electronics Corporation and is only 
 * intended for use with Renesas products. No other uses are authorized. This 
@@ -28,7 +28,7 @@
 * Device(s)    : R5F10RLC
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements device driver for IT module.
-* Creation Date: 15.10.2012
+* Creation Date: 30.11.2012
 ***********************************************************************************************************************/
 
 #ifndef IT_H

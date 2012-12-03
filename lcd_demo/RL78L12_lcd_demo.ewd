@@ -49,7 +49,7 @@
         </option>
         <option>
           <name>DynDriver</name>
-          <state>E1RL78</state>
+          <state>TKRL78</state>
         </option>
         <option>
           <name>DebugDDFOverride</name>
@@ -134,7 +134,7 @@
         </option>
         <option>
           <name>E1VerifyLoad</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>E1LogFile</name>

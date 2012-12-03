@@ -28,7 +28,7 @@
 * Device(s)    : R5F10RLC
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements general head file.
-* Creation Date: 15.10.2012
+* Creation Date: 30.11.2012
 ***********************************************************************************************************************/
 
 #ifndef STATUS_H
