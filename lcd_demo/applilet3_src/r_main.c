@@ -28,7 +28,7 @@
 * Device(s)    : R5F10RLC
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements main function.
-* Creation Date: 30.11.2012
+* Creation Date: 15.10.2012
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -40,13 +40,10 @@ Includes
 #include "r_cg_adc.h"
 #include "r_cg_rtc.h"
 #include "r_cg_it.h"
-#include "r_cg_lcd_RPB.h"
+#include "r_cg_lcd.h"
 /* Start user code for include. Do not edit comment generated here */
 
-/* include the board specific package definitions */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "BSP_RSKRL78L12.h"
 
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -109,13 +106,21 @@ void R_MAIN_UserInit(void);
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
+/*
+* Demo shows a running clock and the sampled voltage on the potentiometer
+* Results are also output on Uart @ 9600,8 bit,no parity,no flow control
+* Make sure J11 is on 1-2 to get the uart output, and J9 is open to use the
+* LCD display correctly (lines shared with LEDs)
+*
+*/
+
 void main(void)
 {
     R_MAIN_UserInit();
     /* Start user code. Do not edit comment generated here */
 
-#if 1
-    /* test the display with different patterns */
+#if 0
+    /* test the display on the starter kit with different patterns */
     LCD_selfTest();
 #endif
     
@@ -189,7 +194,7 @@ void R_MAIN_UserInit(void)
     /* End user code. Do not edit comment generated here */
 }
 
-/* Start user code for adding. Do not edit comment generated here */
+
 
 void welcomeMessage(void) {
   

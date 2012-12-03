@@ -61,7 +61,6 @@ waitMs(125);\
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-#if(PLATFORM == RSKRL78L12)
 void R_LCD_Create(void)
 {
     volatile uint32_t wt_count;
@@ -104,7 +103,7 @@ void R_LCD_Create(void)
     P14 &= 0x00U;
     PM14 &= 0x00U;
     LCDM1 |= _00_LCD_DISPLAY_PATTERN_A;
-    LCDC0 = _00_LCD_SOURCE_CLOCK_FSUB | _05_LCD_CLOCK_FLCD_64;
+    LCDC0 = _00_LCD_SOURCE_CLOCK_FSUB | _06_LCD_CLOCK_FLCD_128;
     VLCD = _0C_LCD_BOOST_VOLTAGE_140V;
 
     /* Change the waiting time according to the system */
@@ -114,62 +113,6 @@ void R_LCD_Create(void)
 //        NOP();
 //    }
 }
-#endif
-
-#if(PLATFORM == RPBRL78L12)
-void R_LCD_Create(void)
-{
-    volatile uint32_t wt_count;
-    
-    RTCEN = 1U;    /* supply LCD clock */
-    LCDON = 0U;    /* disable LCD clock operation */
-    LCMK0 = 1U;    /* disable INTLCD0 interrupt */
-    LCIF0 = 0U;    /* clear INTLCD0 interrupt flag */
-    LCDM1 |= _01_LCD_VOLTAGE_LOW;
-    LCDM0 = _00_LCD_DISPLAY_WAVEFORM_A | _0D_LCD_DISPLAY_MODE1;
-    LCDM0 |= _40_LCD_VOLTAGE_MODE_INTERNAL;
-    /* Set CAPL and CAPH pins */
-    ISCLCD &= (uint8_t)~_01_LCD_CAPLH_BUFFER_VALID;
-    P12 &= 0x3FU;
-    PM12 |= 0xC0U;
-    /* Set segment pins */
-    PFSEG0 |= 0xF0U;
-    PFSEG1 |= 0xFFU;
-    PFSEG2 |= 0xF9U;
-    PFSEG3 |= 0x9FU;
-    PFSEG4 |= 0x7FU;
-    PMC1 &= 0xE7U;
-    P1 &= 0x06U;
-    PM1 &= 0x06U;
-    P3 &= 0xFEU;
-    PM3 &= 0xFEU;
-    PMC4 &= 0xFDU;
-    P4 &= 0xF1U;
-    PM4 &= 0xF1U;
-    P5 &= 0xE0U;
-    PM5 &= 0xE0U;
-    P6 &= 0xFCU;
-    PM6 &= 0xFCU;
-    P7 &= 0xE0U;
-    PM7 &= 0xE0U;
-    PMC12 &= 0xFEU;
-    P12 &= 0xFEU;
-    PM12 &= 0xFEU;
-    PMC14 &= 0xC3U;
-    P14 &= 0x00U;
-    PM14 &= 0x00U;
-    LCDM1 |= _00_LCD_DISPLAY_PATTERN_A;
-    LCDC0 = _00_LCD_SOURCE_CLOCK_FSUB | _05_LCD_CLOCK_FLCD_64;
-    VLCD = _0C_LCD_BOOST_VOLTAGE_140V;
-
-    /* Change the waiting time according to the system */
-	  waitMs(5);
-// 	 for (wt_count = 0U; wt_count <= LCD_REFVOLTAGE_WAITTIME; wt_count++)
-//    {
-//        NOP();
-//    }
-}
-#endif
 
 /***********************************************************************************************************************
 * Function Name: R_LCD_Start
@@ -211,7 +154,7 @@ void R_LCD_Set_VoltageOn(void)
 //    {
 //        NOP();
 //    }
-
+    
     SCOC = 1U;
 }
 
@@ -229,7 +172,6 @@ void R_LCD_Set_VoltageOff(void)
 }
 
 /* Start user code for adding. Do not edit comment generated here */
-
 void waitMs(uint8_t time) {
 	
 	/* stop the timer if running */

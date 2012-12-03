@@ -28,7 +28,7 @@
 * Device(s)    : R5F10RLC
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file implements system initializing function.
-* Creation Date: 30.11.2012
+* Creation Date: 15.10.2012
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -40,7 +40,7 @@ Includes
 #include "r_cg_adc.h"
 #include "r_cg_rtc.h"
 #include "r_cg_it.h"
-#include "r_cg_lcd_RPB.h"
+#include "r_cg_lcd.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"

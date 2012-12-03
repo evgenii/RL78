@@ -28,7 +28,7 @@
 * Device(s)    : R5F10RLC
 * Tool-Chain   : IAR Systems iccrl78
 * Description  : This file includes user definition.
-* Creation Date: 30.11.2012
+* Creation Date: 15.10.2012
 ***********************************************************************************************************************/
 
 #ifndef _USER_DEF_H
@@ -39,7 +39,6 @@ User definitions
 ***********************************************************************************************************************/
 
 /* Start user code for function. Do not edit comment generated here */
-#include "BSP.h"
 
 #define LED0_on()    (P3_bit.no0 = 0) 
 #define LED0_off()   (P3_bit.no0 = 1u)    
@@ -56,6 +55,10 @@ User definitions
 #define LED3_on()    (P5_bit.no2 = 0) 
 #define LED3_off()   (P5_bit.no2 = 1u)  
 #define LED3_toggle() (P5_bit.no2 ^= 1U)
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /* End user code. Do not edit comment generated here */
 #endif

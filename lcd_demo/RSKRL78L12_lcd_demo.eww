@@ -2,7 +2,7 @@
 
 <workspace>
   <project>
-    <path>$WS_DIR$\RL78L12_lcd_demo.ewp</path>
+    <path>$WS_DIR$\RSKRL78L12_lcd_demo.ewp</path>
   </project>
   <batchBuild/>
 </workspace>

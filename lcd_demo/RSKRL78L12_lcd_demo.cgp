@@ -64,8 +64,8 @@
     </LCD_SEG_CHANGED>
     <PIOR0Value Name="PIOR0Value" Text="0" />
     <PIOR1Value Name="PIOR1Value" Text="0" />
-    <ProjectName Name="PrjName" Text="RSKRL78L12_lcd_demo" />
-    <ProjectPath Name="PrjPath" Text="C:\git\RL78\lcd_demo" />
+    <ProjectName Name="PrjName" Text="RSKRL78L12_uart" />
+    <ProjectPath Name="PrjPath" Text="C:\work\projects\applilet_L12\uart" />
     <ProjectKind Name="PrjKind" Text="Project78K0R" />
     <DeviceName Name="DeviceName" Fixed="" Text="RL78L12" />
     <MCUName Name="MCUName" Text="RL78L12_64pin" />

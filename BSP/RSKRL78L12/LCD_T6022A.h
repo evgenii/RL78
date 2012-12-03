@@ -4,6 +4,11 @@
 #include "r_cg_macrodriver.h"
 #include "r_cg_rtc.h"
 
+/* user section */
+
+/* end of user definitions */
+
+
 typedef enum LCD_element {
   
   BAT_CONTOUR,
@@ -29,7 +34,7 @@ typedef enum LCD_element {
   FAN,
   ZONE,
   MG_ML,
-  MM_HG,      
+  MM_HG,      /* unsupported */
   ALARM,
   SUNDAY,
   MONDAY,
@@ -38,13 +43,12 @@ typedef enum LCD_element {
   THURSDAY,
   FRIDAY,
   SATURDAY,  
-  BAR1,       
-  BAR2,       
-  BAR3,       
-  BAR4,       
-  BAR5,      
-  BAR6,       
-  NUM_LCD_ELEMENTS
+  BAR1,       /* unsupported */
+  BAR2,       /* unsupported */
+  BAR3,       /* unsupported */
+  BAR4,       /* unsupported */
+  BAR5,       /* unsupported */
+  BAR6        /* unsupported */
  
 } LCD_element;
 
@@ -94,7 +98,7 @@ void LCD_displayTime(rtc_counter_value_t const * time);
 void LCD_blinkHourColumn(void);
 
 
-/* not all digits can be supported due to hw layout, currently not implemented */
+/* only two digits can be supported due to hw layout, currently not implemented */
 void LCD_displayCount(const LCD_integerVal integerValue);
 
 /* test function, not needed for production code */
