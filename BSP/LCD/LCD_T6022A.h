@@ -64,6 +64,25 @@ typedef enum LCD_digit {
   
 } LCD_digit;
 
+typedef enum LCD_glyph_num {
+  
+  gZERO = 0,
+  gONE,gTWO,gTHREE,gFOUR,gFIVE,gSIX,gSEVEN,gEIGHT,gNINE,
+  gA,gB,gC,gD,gE,gF,gG,gH,gI,gL,gM,gN,gO,gP,gQ,gR,gS,gT,gU,gV,gW,gX,gY,gZ,gSTAR,gDOLLAR,
+  NUM_LCD_GLYPH
+  
+} LCD_glyph_num;
+
+typedef enum LCD_glyph_letter {
+  
+  gA = 65,
+  gB,gC,gD,gE,gF,gG,gH,gI,gL,gM,gN,gO,gP,gQ,gR,gS,gT,gU,gV,gW,gX,gY,gZ,
+  gSTAR = 42,
+  gDOLLAR = 36,
+  NUM_LCD_GLYPH
+  
+} LCD_glyph_letter;
+
 typedef enum LCD_sign {
 
   PLUS = 0,
