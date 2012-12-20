@@ -167,5 +167,8 @@ pip-log.txt
 *.dbgdt
 *.dni
 *.wsdt
-
-
+*.i
+*.lst
+*.map
+*.s87
+*.bat

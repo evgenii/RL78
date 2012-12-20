@@ -87,8 +87,11 @@
 //-D_NEAR_HEAP_SIZE=400                                 // heap size
 //-D_FAR_HEAP_SIZE=4000                                 // far heap size
 
-// mirror area selection: 0 -> Mirror 1st 64K 0x0:0xFFFF, 1 -> Mirror 2nd 64K 0x10000:0x1FFFF
-// 2 -> Copy to Ram
+/* mirror area selection:
+* 0 -> Mirror 1st 64K 0x0:0xFFFF 
+* 1 -> Mirror 2nd 64K 0x10000:0x1FFFF
+* 2 -> located in ram 
+*/
 //-D_NEAR_CONST_LOCATION=0
 //-D_NEAR_CONST_LOCATION_START=0x3000   // target mirror area (max 27.75 K)
 //-D_NEAR_CONST_LOCATION_END=0x9EFF
