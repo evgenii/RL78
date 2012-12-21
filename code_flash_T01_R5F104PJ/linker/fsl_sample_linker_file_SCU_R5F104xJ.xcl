@@ -1,6 +1,6 @@
 //=================================================================================================
 // Project      = Flash self-programming library, MF3 single voltage flash
-// Module       = fsl_sample_linker_file_SCI_R5F104xJ.xcl
+// Module       = fsl_sample_linker_file_SCU_R5F104xJ.xcl
 // Device:      = RL78
 // Version      = V2.11
 //=================================================================================================

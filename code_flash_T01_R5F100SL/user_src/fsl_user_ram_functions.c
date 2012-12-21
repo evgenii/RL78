@@ -102,6 +102,7 @@ USER_RAM_CODE uint8_t verifyFromRam(uint16_t startBlockNum, uint16_t endBlockNum
     return(FSL_OK);  
 }
 
+
 // define interrupt routine from ram
 // interrupt routine needs to catch everything, and cannot access flash !!!!
 // interrupts need to be quitted explicitly within this ISR
@@ -125,13 +126,11 @@ FSL_INT_RAM_CODE void FSL_userIsrInRam(void) {
         hundredMsec++;
         if(hundredMsec >= 9) {
             hundredMsec = 0;
-            P7_bit.no5 ^= 1U;
+            P7_bit.no6 ^= 1U;
       };
     }    
   
 }
-
-
 
 
 
