@@ -68,8 +68,7 @@ typedef enum LCD_glyph_num {
   
   gZERO = 0,
   gONE,gTWO,gTHREE,gFOUR,gFIVE,gSIX,gSEVEN,gEIGHT,gNINE,
-  gA,gB,gC,gD,gE,gF,gG,gH,gI,gL,gM,gN,gO,gP,gQ,gR,gS,gT,gU,gV,gW,gX,gY,gZ,gSTAR,gDOLLAR,
-  NUM_LCD_GLYPH
+  LCD_GLYPH_NUMS
   
 } LCD_glyph_num;
 
@@ -79,7 +78,7 @@ typedef enum LCD_glyph_letter {
   gB,gC,gD,gE,gF,gG,gH,gI,gL,gM,gN,gO,gP,gQ,gR,gS,gT,gU,gV,gW,gX,gY,gZ,
   gSTAR = 42,
   gDOLLAR = 36,
-  NUM_LCD_GLYPH
+  NUM_GLYPH_LETTERS
   
 } LCD_glyph_letter;
 

@@ -238,7 +238,7 @@
         </option>
         <option>
           <name>TKVerifyLoad</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>TKLogFile</name>
@@ -332,7 +332,7 @@
         </option>
         <option>
           <name>DynDriver</name>
-          <state>SIMRL78</state>
+          <state>TKRL78</state>
         </option>
         <option>
           <name>DebugDDFOverride</name>
@@ -340,7 +340,7 @@
         </option>
         <option>
           <name>DebugDDFFile</name>
-          <state></state>
+          <state>$TOOLKIT_DIR$\CONFIG\DDF\ior5f10rlc.ddf</state>
         </option>
         <option>
           <name>DebugCUseExtraOptions</name>
@@ -521,7 +521,7 @@
         </option>
         <option>
           <name>TKVerifyLoad</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>TKLogFile</name>
