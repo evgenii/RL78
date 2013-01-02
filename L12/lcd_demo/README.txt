@@ -1,2 +1,5 @@
-In this demo, a watch is showed and the results of the ADC conversion are displayed on the LCD screen
-Additionally, a welcome message and the same sampled values are sent out to the uart interface
+In this demo, a watch is shown.
+The results of an ADC conversion are displayed on the LCD screen, reading the voltage from the on-board potentiometer
+Additionally, a welcome message and the ADC readings are sent out to the uart interface
+
+
