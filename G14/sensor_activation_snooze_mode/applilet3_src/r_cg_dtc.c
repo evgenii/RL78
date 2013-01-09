@@ -71,9 +71,6 @@ uint16_t IT_timing[2] = { (0x8000 | IT_TRIGGER_TIME), 0x0 };
 #pragma data_alignment = 256
 uint16_t IT_stop[2] = { 0x0, 0x0 }; 
 
-//#pragma data_alignment = 256
-//uint8_t ADC_power[2] = { _18_AD_CONVERSION_CLOCK_8 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT | _01_AD_COMPARATOR_ENABLE,
-//                            0x0 };
 
 void DTC_Create(void);
 
