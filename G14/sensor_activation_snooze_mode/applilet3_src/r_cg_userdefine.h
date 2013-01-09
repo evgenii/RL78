@@ -54,8 +54,8 @@ void TMR_RJ0_Start(void);
 void TMR_RJ0_Create(void);
 
 /* IT_TIGGER_TIME + HOCO wakeup time + ADC conversion time must be less than SENSOR_ON_TIME */
-#define SENSOR_ON_TIME  0xA
-#define IT_TRIGGER_TIME 0x9
+#define SENSOR_ON_TIME  0x400
+#define IT_TRIGGER_TIME 0x250
 
 /* End user code. Do not edit comment generated here */
 #endif

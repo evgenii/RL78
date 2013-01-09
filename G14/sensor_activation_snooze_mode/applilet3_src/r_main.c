@@ -113,6 +113,9 @@ void ADC_setupAdmRegister(void) {
     /* disable / enable comparators */
     ADCE = 0U;
     ADCE = 1U;
+    
+//    ADM0 = 0x0;
+//    ADM0 = _18_AD_CONVERSION_CLOCK_8 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT | _01_AD_COMPARATOR_ENABLE;
 }
 
 void setupChain(void) {
