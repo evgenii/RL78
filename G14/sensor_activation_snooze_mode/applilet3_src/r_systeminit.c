@@ -68,7 +68,10 @@ void R_Systeminit(void)
     R_PORT_Create();
     R_CGC_Create();
 
-    R_IT_Create();
+    /* manually removed initialization of ADC, TRJ, DTC */
+    /* will be done later in main module */
+    
+    R_IT_Create();  
 
 
     CRC0CTL = 0x00U;

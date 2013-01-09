@@ -54,22 +54,22 @@ Global variables and functions
 ***********************************************************************************************************************/
 void R_ADC_Create(void)
 {
-    ADCEN = 1U;  /* supply AD clock */
-    ADM0 = _00_AD_ADM0_INITIALVALUE;  /* disable AD conversion and clear ADM0 register */
-    ADMK = 1U;  /* disable INTAD interrupt */
-    ADIF = 0U;  /* clear INTAD interrupt flag */
-    /* Set INTAD low priority */
-    ADPR1 = 1U;
-    ADPR0 = 1U;
-    /* Set ANI0 - ANI2 pin as analog input */
-    PM2 |= 0xFFU;
-    ADM0 = _30_AD_CONVERSION_CLOCK_4 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT;
-    ADM1 = _C0_AD_TRIGGER_HARDWARE_WAIT | _20_AD_CONVMODE_ONESELECT | _02_AD_TRIGGER_INTRTC;
-    ADM2 = _00_AD_POSITIVE_VDD | _00_AD_NEGATIVE_VSS | _08_AD_AREA_MODE_2_3 | _04_AD_WAKEUP_ON |
-           _00_AD_RESOLUTION_10BIT;
-    ADUL = _80_AD_ADUL_VALUE;
-    ADLL = _00_AD_ADLL_VALUE;
-    ADS = _02_AD_INPUT_CHANNEL_2;
+//    ADCEN = 1U;  /* supply AD clock */
+//    ADM0 = _00_AD_ADM0_INITIALVALUE;  /* disable AD conversion and clear ADM0 register */
+//    ADMK = 1U;  /* disable INTAD interrupt */
+//    ADIF = 0U;  /* clear INTAD interrupt flag */
+//    /* Set INTAD low priority */
+//    ADPR1 = 1U;
+//    ADPR0 = 1U;
+//    /* Set ANI0 - ANI2 pin as analog input */
+//    PM2 |= 0xFFU;
+//    ADM0 = _30_AD_CONVERSION_CLOCK_4 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT;
+//    ADM1 = _C0_AD_TRIGGER_HARDWARE_WAIT | _20_AD_CONVMODE_ONESELECT | _02_AD_TRIGGER_INTRTC;
+//    ADM2 = _00_AD_POSITIVE_VDD | _00_AD_NEGATIVE_VSS | _08_AD_AREA_MODE_2_3 | _04_AD_WAKEUP_ON |
+//           _00_AD_RESOLUTION_10BIT;
+//    ADUL = _80_AD_ADUL_VALUE;
+//    ADLL = _00_AD_ADLL_VALUE;
+//    ADS = _02_AD_INPUT_CHANNEL_2;
 }
 
 /***********************************************************************************************************************
@@ -132,7 +132,7 @@ void R_ADC_Get_Result(uint16_t * const buffer)
 }
 
 /* Start user code for adding. Do not edit comment generated here */
-
+/* use this modified version of the driver */
 void ADC_Create(void)
 {
     ADCEN = 1U;  /* supply AD clock */

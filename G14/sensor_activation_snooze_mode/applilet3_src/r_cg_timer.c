@@ -53,25 +53,25 @@ extern uint16_t RJ_timing[2];
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TMR_RJ0_Create(void)
-{
-    TRJ0EN = 1U;    /* enable input clock supply */
-    TRJCR0 &= (uint8_t)~_01_TMRJ_COUNT_START;    /* disable TMRJ0 operation */
-    TRJMK0 = 1U;    /* disable INTTRJ0 interrupt */
-    TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
-    /* Set INTTRJ0 low priority */
-    TRJPR10 = 1U;
-    TRJPR00 = 1U;
-    TRJMR0 = _01_TMRJ_MODE_PULSE_OUTPUT | _40_TMRJ_COUNT_SOURCE_FIL;
-    TRJIOC0 = _04_TMRJ_TRJO_OUTPUT_ENABLE | _00_TMRJ_TRJIO_POLARITY_0;
-    TRJ0 = _0000_TMRJ_TRJ0_VALUE;
-    /* Set TRJIO0 pin */
-    P0 &= 0xFDU;
-    PM0 &= 0xFDU;
-    /* Set TRJO0 pin */
-    P3 &= 0xFEU;
-    PM3 &= 0xFEU;
-}
+//void R_TMR_RJ0_Create(void)
+//{
+//    TRJ0EN = 1U;    /* enable input clock supply */
+//    TRJCR0 &= (uint8_t)~_01_TMRJ_COUNT_START;    /* disable TMRJ0 operation */
+//    TRJMK0 = 1U;    /* disable INTTRJ0 interrupt */
+//    TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
+//    /* Set INTTRJ0 low priority */
+//    TRJPR10 = 1U;
+//    TRJPR00 = 1U;
+//    TRJMR0 = _01_TMRJ_MODE_PULSE_OUTPUT | _40_TMRJ_COUNT_SOURCE_FIL;
+//    TRJIOC0 = _04_TMRJ_TRJO_OUTPUT_ENABLE | _00_TMRJ_TRJIO_POLARITY_0;
+//    TRJ0 = _0000_TMRJ_TRJ0_VALUE;
+//    /* Set TRJIO0 pin */
+//    P0 &= 0xFDU;
+//    PM0 &= 0xFDU;
+//    /* Set TRJO0 pin */
+//    P3 &= 0xFEU;
+//    PM3 &= 0xFEU;
+//}
 
 /***********************************************************************************************************************
 * Function Name: R_TMR_RJ0_Start
@@ -79,12 +79,12 @@ void R_TMR_RJ0_Create(void)
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TMR_RJ0_Start(void)
-{
-    TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
-    TRJMK0 = 0U;    /* enable INTTRJ0 interrupt */
-    TRJCR0 |= _01_TMRJ_COUNT_START;    /* enable TMRJ operation */
-}
+//void R_TMR_RJ0_Start(void)
+//{
+//    TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
+//    TRJMK0 = 0U;    /* enable INTTRJ0 interrupt */
+//    TRJCR0 |= _01_TMRJ_COUNT_START;    /* enable TMRJ operation */
+//}
 
 /***********************************************************************************************************************
 * Function Name: R_TMR_RJ0_Stop
@@ -92,21 +92,20 @@ void R_TMR_RJ0_Start(void)
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TMR_RJ0_Stop(void)
-{
-    TRJCR0 &= (uint8_t)~_01_TMRJ_COUNT_START;    /* disable TMRJ operation */
-    TRJMK0 = 1U;    /* disable INTTRJ0 interrupt */
-    TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
-}
+//void R_TMR_RJ0_Stop(void)
+//{
+//    TRJCR0 &= (uint8_t)~_01_TMRJ_COUNT_START;    /* disable TMRJ operation */
+//    TRJMK0 = 1U;    /* disable INTTRJ0 interrupt */
+//    TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
+//}
 
 /* Start user code for adding. Do not edit comment generated here */
+
+/* Use these modified versions of the driver */
+
 void TMR_RJ0_Start(void)
 {
     TRJIF0 = 0U;    /* clear INTTRJ0 interrupt flag */
-    //TRJMK0 = 0U;    /* enable INTTRJ0 interrupt */
-    // bug in appllet? not configured
-    // do this manually 
-    // TRJIOC0 |=  _04_TMRJ_TRJO_OUTPUT_ENABLE;
     TRJCR0 |= _01_TMRJ_COUNT_START;    /* enable TMRJ operation */
 }
 

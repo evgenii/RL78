@@ -58,17 +58,7 @@ volatile uint8_t registerRJC_inInterrupt = 0;
 #pragma vector = INTTRJ0_vect
 __interrupt static void r_tmr_rj0_interrupt(void)
 {
-    /* Start user code. Do not edit comment generated here */
-    interrupts++;
-
-    // this is used when the timer is being rewritten by the cpu
-    TRJ0 = RJ_timing[interrupts % 2];
-    
-    /* comment this out and observe, no change in output */
-    /* seems that quitting the underflow flag is irrelevant */
-    if(interrupts == 1) registerRJC_inInterrupt = TRJCR0;   
-
-    
+    /* Start user code. Do not edit comment generated here */   
     /* End user code. Do not edit comment generated here */
 }
 

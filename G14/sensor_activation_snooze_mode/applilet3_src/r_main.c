@@ -81,10 +81,9 @@ void  main(void)
 {
     /* Start user code. Do not edit comment generated here */
     
-    uint16_t i,j;    
+    uint16_t j;        
     
-    
-    DTC_Create(); // modified versions
+    DTC_Create(); // initialize with modified versions
     ADC_Create();
     TMR_RJ0_Create();
     
@@ -95,7 +94,8 @@ void  main(void)
       STOP();
         
       // within the ADC interrupt, output is set low
-      // allow for some delay to see the pulse in output
+      // allow for some delay to trigger on the pulse with the scope, for debug
+      // will also flash the LED on the Promo board
       for(j=0;j<65535;j++);
       P7_bit.no7 = 1;
       for(j=0;j<65535;j++);
@@ -126,10 +126,13 @@ void setupChain(void) {
     DTC_Reload(); 
     R_DTCD0_Start();
   
+    // rewrite the ADM register, required for proper ADC start 
     ADC_setupAdmRegister();
     
-    /* timer shall toggle with a 500 ms / 100 ms repeating pattern */
-    /* the TRJ match is set to a shorter value, first DTC reprogramming occurs before interval timer expires */
+    /* the TRJ match (0x800) is first set to a shorter value than IT (0xFFF) */
+    /* the first DTC reprogramming will occur before the interval timer expires */
+    /* i.e. the first "sleep cycle" is shorter than the successives */
+    /* this is required since IT needs to be started BEFORE going to stop mode */
     TRJCR0 = 0;
     TRJ0 = 0x800;
       

@@ -65,7 +65,6 @@ __no_init st_dtc_data dtc_controldata_3;
 #pragma data_alignment = 256
 uint16_t RJ_timing[2] = { SENSOR_ON_TIME, 0xFFFF/*0x1D4B*/ };
 
-/* IT period + ADC conversion time must be set the second interval to allow for sufficient time for */
 #pragma data_alignment = 256
 uint16_t IT_timing[2] = { (0x8000 | IT_TRIGGER_TIME), 0x0 }; 
 
@@ -88,34 +87,34 @@ void DTC_Create(void);
 ***********************************************************************************************************************/
 void R_DTC_Create(void)
 {
-    /* Enable input clock supply */
-    DTCEN = 1U;
-    /* Disable all DTC channels operation */
-    DTCEN0 = 0x00U;
-    DTCEN1 = 0x00U;
-    DTCEN2 = 0x00U;
-    DTCEN3 = 0x00U;
-    DTCEN4 = 0x00U;
-    /* Set base address */
-    DTCBAR = 0xFDU;
-    /* Set DTCD0 */
-    dtc_vectortable[37] = 0x40U;
-    dtc_controldata_0.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | _00_DTC_SOURCE_ADDR_FIXED |
-                              _00_DTC_DEST_ADDR_FIXED | _10_DTC_CHAIN_TRANSFER_ENABLE | _00_DTC_REPEAT_INT_DISABLE;
-    dtc_controldata_0.dtbls = _01_DTCD0_TRANSFER_BLOCKSIZE;
-    dtc_controldata_0.dtcct = _02_DTCD0_TRANSFER_BYTE;
-    dtc_controldata_0.dtrld = _02_DTCD0_TRANSFER_BYTE;
-    dtc_controldata_0.dtsar = _0000_DTCD0_SRC_ADDRESS;
-    dtc_controldata_0.dtdar = _0240_DTCD0_DEST_ADDRESS;
-    /* Set DTCD1 */
-    dtc_controldata_1.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE |
-                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_DEST_ADDR_FIXED |
-                              _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_REPEAT_INT_DISABLE;
-    dtc_controldata_1.dtbls = _01_DTCD1_TRANSFER_BLOCKSIZE;
-    dtc_controldata_1.dtcct = _02_DTCD1_TRANSFER_BYTE;
-    dtc_controldata_1.dtrld = _02_DTCD1_TRANSFER_BYTE;
-    dtc_controldata_1.dtsar = _0000_DTCD1_SRC_ADDRESS;
-    dtc_controldata_1.dtdar = _0500_DTCD1_DEST_ADDRESS;
+//    /* Enable input clock supply */
+//    DTCEN = 1U;
+//    /* Disable all DTC channels operation */
+//    DTCEN0 = 0x00U;
+//    DTCEN1 = 0x00U;
+//    DTCEN2 = 0x00U;
+//    DTCEN3 = 0x00U;
+//    DTCEN4 = 0x00U;
+//    /* Set base address */
+//    DTCBAR = 0xFDU;
+//    /* Set DTCD0 */
+//    dtc_vectortable[37] = 0x40U;
+//    dtc_controldata_0.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | _00_DTC_SOURCE_ADDR_FIXED |
+//                              _00_DTC_DEST_ADDR_FIXED | _10_DTC_CHAIN_TRANSFER_ENABLE | _00_DTC_REPEAT_INT_DISABLE;
+//    dtc_controldata_0.dtbls = _01_DTCD0_TRANSFER_BLOCKSIZE;
+//    dtc_controldata_0.dtcct = _02_DTCD0_TRANSFER_BYTE;
+//    dtc_controldata_0.dtrld = _02_DTCD0_TRANSFER_BYTE;
+//    dtc_controldata_0.dtsar = _0000_DTCD0_SRC_ADDRESS;
+//    dtc_controldata_0.dtdar = _0240_DTCD0_DEST_ADDRESS;
+//    /* Set DTCD1 */
+//    dtc_controldata_1.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE |
+//                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_DEST_ADDR_FIXED |
+//                              _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_REPEAT_INT_DISABLE;
+//    dtc_controldata_1.dtbls = _01_DTCD1_TRANSFER_BLOCKSIZE;
+//    dtc_controldata_1.dtcct = _02_DTCD1_TRANSFER_BYTE;
+//    dtc_controldata_1.dtrld = _02_DTCD1_TRANSFER_BYTE;
+//    dtc_controldata_1.dtsar = _0000_DTCD1_SRC_ADDRESS;
+//    dtc_controldata_1.dtdar = _0500_DTCD1_DEST_ADDRESS;
 }
 
 /***********************************************************************************************************************
@@ -141,7 +140,7 @@ void R_DTCD0_Stop(void)
 }
 
 /* Start user code for adding. Do not edit comment generated here */
-
+/* use these modified versions of the driver */
 void DTC_Reload(void) {
 
     dtc_controldata_0.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | 

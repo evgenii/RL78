@@ -36,7 +36,7 @@
         </option>
         <option>
           <name>GenNearConstSize</name>
-          <state>53.75</state>
+          <state>50.25</state>
         </option>
         <option>
           <name>GOutputBinary</name>
@@ -558,7 +558,7 @@
     <settings>
       <name>BICOMP</name>
       <archiveVersion>0</archiveVersion>
-      <data />
+      <data/>
     </settings>
     <settings>
       <name>BUILDACTION</name>
@@ -581,7 +581,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>stop_mode_timer_test.d87</state>
+          <state>sensor_activation_snooze_mode.d87</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -878,12 +878,12 @@
     <settings>
       <name>INTERNAL_HWSUPPORT</name>
       <archiveVersion>3</archiveVersion>
-      <data />
+      <data/>
     </settings>
     <settings>
       <name>BILINK</name>
       <archiveVersion>0</archiveVersion>
-      <data />
+      <data/>
     </settings>
   </configuration>
   <configuration>
@@ -1441,7 +1441,7 @@
     <settings>
       <name>BICOMP</name>
       <archiveVersion>0</archiveVersion>
-      <data />
+      <data/>
     </settings>
     <settings>
       <name>BUILDACTION</name>
@@ -1761,15 +1761,59 @@
     <settings>
       <name>INTERNAL_HWSUPPORT</name>
       <archiveVersion>3</archiveVersion>
-      <data />
+      <data/>
     </settings>
     <settings>
       <name>BILINK</name>
       <archiveVersion>0</archiveVersion>
-      <data />
+      <data/>
     </settings>
   </configuration>
-  <group><name>applilet_src</name><file><name>$PROJ_DIR$\applilet3_src\r_main.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_systeminit.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_cgc.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_cgc_user.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_port.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_port_user.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_adc.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_adc_user.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_timer.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_timer_user.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_it.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_it_user.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_dtc.c</name></file><file><name>$PROJ_DIR$\applilet3_src\r_cg_dtc_user.c</name></file></group>
+  <group>
+    <name>applilet_src</name>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_adc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_adc_user.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_cgc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_cgc_user.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_dtc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_dtc_user.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_it.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_it_user.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_port.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_port_user.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_timer.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_cg_timer_user.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\applilet3_src\r_systeminit.c</name>
+    </file>
+  </group>
   <group>
     <name>user_src</name>
   </group>
