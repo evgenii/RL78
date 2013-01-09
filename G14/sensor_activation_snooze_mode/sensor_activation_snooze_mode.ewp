@@ -743,19 +743,19 @@
         </option>
         <option>
           <name>AllowExtraOutput</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>GenerateExtraOutput</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>XExtraOutOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>stop_mode_timer_test.a87</state>
+          <state>image.a87</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -916,11 +916,11 @@
         </option>
         <option>
           <name>GenNearConstStart</name>
-          <state>0xF2000</state>
+          <state>0xf2000</state>
         </option>
         <option>
           <name>GenNearConstSize</name>
-          <state>53.75</state>
+          <state>50.25</state>
         </option>
         <option>
           <name>GOutputBinary</name>
@@ -950,15 +950,15 @@
         </option>
         <option>
           <name>GenRTDescription</name>
-          <state></state>
+          <state>Use the normal configuration of the C/EC++ runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
         </option>
         <option>
           <name>GenRTConfigPath</name>
-          <state></state>
+          <state>$TOOLKIT_DIR$\LIB\dlrl78nn2n.h</state>
         </option>
         <option>
           <name>GenRTLibraryPath</name>
-          <state></state>
+          <state>$TOOLKIT_DIR$\LIB\dlrl78nn2n.r87</state>
         </option>
         <option>
           <name>GenHwSupport</name>
@@ -971,7 +971,7 @@
         </option>
         <option>
           <name>GenLibInFormatterDescription</name>
-          <state></state>
+          <state>Automatic choice of formatter.</state>
         </option>
         <option>
           <name>GenLibOutFormatter</name>
@@ -980,19 +980,19 @@
         </option>
         <option>
           <name>GenLibOutFormatterDescription</name>
-          <state></state>
+          <state>Automatic choice of formatter.</state>
         </option>
         <option>
           <name>GenStackSize</name>
-          <state>###Uninitialized###</state>
+          <state>128</state>
         </option>
         <option>
           <name>GenNearHeapSize</name>
-          <state>###Uninitialized###</state>
+          <state>256</state>
         </option>
         <option>
           <name>GenFarHeapSize</name>
-          <state>###Uninitialized###</state>
+          <state>4096</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -1027,7 +1027,7 @@
         </option>
         <option>
           <name>GenMathFunctionDescription</name>
-          <state></state>
+          <state>Default variants of cos, sin, tan, log, log10, pow, and exp.</state>
         </option>
       </data>
     </settings>
@@ -1105,7 +1105,7 @@
         </option>
         <option>
           <name>IccOptLevelSlave</name>
-          <state>1</state>
+          <state>3</state>
         </option>
         <option>
           <name>IccOptAllowList</name>
@@ -1158,7 +1158,7 @@
         </option>
         <option>
           <name>IccOutputFile</name>
-          <state></state>
+          <state>$FILE_BNAME$.r87</state>
         </option>
         <option>
           <name>CCDefines</name>
@@ -1366,7 +1366,8 @@
         </option>
         <option>
           <name>AsmDefines</name>
-          <state>###Uninitialized###</state>
+          <state>__NEAR_MODEL__</state>
+          <state>__NEAR_DATA_MODEL__</state>
         </option>
         <option>
           <name>AsmPreprocOutput</name>
@@ -1464,7 +1465,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state></state>
+          <state>sensor_activation_snooze_mode.a87</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -1478,7 +1479,7 @@
         </option>
         <option>
           <name>SecondaryOutputFile</name>
-          <state></state>
+          <state>(None for the selected format)</state>
         </option>
         <option>
           <name>XDefines</name>
@@ -1518,7 +1519,7 @@
         </option>
         <option>
           <name>XIncludes</name>
-          <state>###Uninitialized###</state>
+          <state>$TOOLKIT_DIR$\LIB\</state>
         </option>
         <option>
           <name>ModuleStatus</name>
@@ -1610,7 +1611,7 @@
         </option>
         <option>
           <name>xcProgramEntryLabel</name>
-          <state></state>
+          <state>__program_start</state>
         </option>
         <option>
           <name>DebugInformation</name>
@@ -1630,15 +1631,15 @@
         </option>
         <option>
           <name>GenerateExtraOutput</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>XExtraOutOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state></state>
+          <state>image_release.a87</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
