@@ -71,9 +71,9 @@ uint16_t IT_timing[2] = { (0x8000 | IT_TRIGGER_TIME), 0x0 };
 #pragma data_alignment = 256
 uint16_t IT_stop[2] = { 0x0, 0x0 }; 
 
-#pragma data_alignment = 256
-uint8_t ADC_power[2] = { _18_AD_CONVERSION_CLOCK_8 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT | _01_AD_COMPARATOR_ENABLE,
-                            0x0 };
+//#pragma data_alignment = 256
+//uint8_t ADC_power[2] = { _18_AD_CONVERSION_CLOCK_8 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT | _01_AD_COMPARATOR_ENABLE,
+//                            0x0 };
 
 void DTC_Create(void);
 
@@ -174,15 +174,15 @@ void DTC_Reload(void) {
     dtc_controldata_2.dtsar = (uint16_t) &IT_timing[0];
     dtc_controldata_2.dtdar = (uint16_t) &ITMC;
     
-    dtc_controldata_3.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | 
-                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_DEST_ADDR_FIXED |
-                              _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_REPEAT_INT_DISABLE | 
-                              _00_DTC_DATA_SIZE_8BITS;
-    dtc_controldata_3.dtbls = 0x01;
-    dtc_controldata_3.dtcct = 0x02;
-    dtc_controldata_3.dtrld = 0x02;
-    dtc_controldata_3.dtsar = (uint16_t) &ADC_power[0];
-    dtc_controldata_3.dtdar = (uint16_t) &ADM0;  
+//    dtc_controldata_3.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | 
+//                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_DEST_ADDR_FIXED |
+//                              _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_REPEAT_INT_DISABLE | 
+//                              _00_DTC_DATA_SIZE_8BITS;
+//    dtc_controldata_3.dtbls = 0x01;
+//    dtc_controldata_3.dtcct = 0x02;
+//    dtc_controldata_3.dtrld = 0x02;
+//    dtc_controldata_3.dtsar = (uint16_t) &ADC_power[0];
+//    dtc_controldata_3.dtdar = (uint16_t) &ADM0;  
 }
 
 void DTC_Create(void)
@@ -230,15 +230,15 @@ void DTC_Create(void)
     dtc_controldata_2.dtsar = (uint16_t) &IT_timing[0];
     dtc_controldata_2.dtdar = (uint16_t) &ITMC;
     
-    dtc_controldata_3.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | 
-                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_DEST_ADDR_FIXED |
-                              _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_REPEAT_INT_DISABLE | 
-                              _00_DTC_DATA_SIZE_8BITS;
-    dtc_controldata_3.dtbls = 0x01;
-    dtc_controldata_3.dtcct = 0x02;
-    dtc_controldata_3.dtrld = 0x02;
-    dtc_controldata_3.dtsar = (uint16_t) &ADC_power[0];
-    dtc_controldata_3.dtdar = (uint16_t) &ADM0;    
+//    dtc_controldata_3.dtccr = _01_DTC_TRANSFER_MODE_REPEAT | _02_DTC_REPEAT_AREA_SOURCE | 
+//                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_DEST_ADDR_FIXED |
+//                              _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_REPEAT_INT_DISABLE | 
+//                              _00_DTC_DATA_SIZE_8BITS;
+//    dtc_controldata_3.dtbls = 0x01;
+//    dtc_controldata_3.dtcct = 0x02;
+//    dtc_controldata_3.dtrld = 0x02;
+//    dtc_controldata_3.dtsar = (uint16_t) &ADC_power[0];
+//    dtc_controldata_3.dtdar = (uint16_t) &ADM0;    
 }
 
 /* End user code. Do not edit comment generated here */

@@ -110,11 +110,9 @@ void  main(void)
 /* Start user code for adding. Do not edit comment generated here */
 void ADC_setupAdmRegister(void) {
 
-    /* disable AD conversion and clear ADM0 register */
-    ADM0 = _00_AD_ADM0_INITIALVALUE;  
-    
-    /* reprogram the register */
-    ADM0 = _18_AD_CONVERSION_CLOCK_8 | _00_AD_TIME_MODE_NORMAL_1 | _00_AD_OPERMODE_SELECT | _01_AD_COMPARATOR_ENABLE;
+    /* disable / enable comparators */
+    ADCE = 0U;
+    ADCE = 1U;
 }
 
 void setupChain(void) {
