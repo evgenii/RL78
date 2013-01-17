@@ -193,18 +193,18 @@ void R_MAIN_UserInit(void)
 
 void welcomeMessage(void) {
   
-    snprintf ( buffer, BUFFER_SIZE, "\n\n\r***********************\n\r");
+    snprintf ( buffer, BUFFER_SIZE, "\n\n\r**********************\n\r");
     uartReady = 0;
     R_UART0_Send((uint8_t *)buffer, strlen(buffer));
     while(!uartReady);
 
-    snprintf ( buffer, BUFFER_SIZE, "* Renesas RL78-L12-SK *\n\r");
+    snprintf ( buffer, BUFFER_SIZE, "*  Renesas RL78-L12  *\n\r");
 
     uartReady = 0;
     R_UART0_Send((uint8_t *)buffer, strlen(buffer));
     while(!uartReady);
                 
-    snprintf ( buffer, BUFFER_SIZE, "***********************\n\n\r");
+    snprintf ( buffer, BUFFER_SIZE, "**********************\n\n\r");
     uartReady = 0;
     R_UART0_Send((uint8_t *)buffer, strlen(buffer));
     while(!uartReady);
