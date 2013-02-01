@@ -67,18 +67,17 @@
 
 -D_USER_ROM_END=0xFBFF                  // end of the application usable flash
 
--D_NEAR_SEGMENT_END=0xFBFF              
+-D_NEAR_SEGMENT_END=0xFBFF
 -D_FAR_SEGMENT_END=0xFBFF
 
 -D_OCD_MONITOR_RESERVED_START=0xFC00    // need to leave last 1K block for OCD monitor
 -D_OCD_MONITOR_RESERVED_END=_ROM_END
                     
-
--D_FSL_RESERVED_RAM_START=0xFE900       // need to reserve this RAM space for the data flash lib when used
+-D_FSL_RESERVED_RAM_START=0xFE900       // need to reserve this RAM space for the FSL when used
 -D_FSL_RESERVED_RAM_END=0xFED09         // defining the symbols, will be referenced in the linker map file
-
 -D_USER_RAM_END=0xFFE1F                 // ram limit, data buffers cannot be placed above this range
 -D_FSL_RAM_ISR_END=0xFFE1F              // ISR function for the library cannot be placed above this range
+
 
 //=================================================================================================
 //      User configuration
