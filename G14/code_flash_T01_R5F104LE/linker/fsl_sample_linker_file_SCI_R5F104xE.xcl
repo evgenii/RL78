@@ -63,18 +63,20 @@
 -D_BOOT_CLUSTER_1_PROGRAM_END=0x1FFF    // with OCD user code starts from 0x10D8
 
 -D_PROGRAM_AREA_START=0x2000            // application code flash block
--D_FAR_SEGMENT_START=0x2000             // not really applicable because of flash size...
+// -D_FAR_SEGMENT_START=                // not applicable because of flash size...
 
 -D_USER_ROM_END=0xFBFF                  // end of the application usable flash
 
 -D_NEAR_SEGMENT_END=0xFBFF
--D_FAR_SEGMENT_END=0xFBFF
+// -D_FAR_SEGMENT_END=                  // not applicable because of flash size...        
 
 -D_OCD_MONITOR_RESERVED_START=0xFC00    // need to leave last 1K block for OCD monitor
 -D_OCD_MONITOR_RESERVED_END=_ROM_END
                     
 -D_FSL_RESERVED_RAM_START=0xFE900       // need to reserve this RAM space for the FSL when used
 -D_FSL_RESERVED_RAM_END=0xFED09         // defining the symbols, will be referenced in the linker map file
+
+-D_USER_RAM_START=0xFED0A
 -D_USER_RAM_END=0xFFE1F                 // ram limit, data buffers cannot be placed above this range
 -D_FSL_RAM_ISR_END=0xFFE1F              // ISR function for the library cannot be placed above this range
 
@@ -88,7 +90,7 @@
 //-------------------------------------------------------------------------
 //-D_CSTACK_SIZE=80                                     // stack size
 //-D_NEAR_HEAP_SIZE=400                                 // heap size
-//-D_FAR_HEAP_SIZE=200                                  // far heap size
+//-D_FAR_HEAP_SIZE=         // not applicable
 
 /* mirror area selection:
 * 0 -> Mirror 1st 64K 0x0:0xFFFF 
@@ -117,15 +119,16 @@
 //      The FAR_I and FAR_ID segments MUST start at the same offset 
 //      from a 64 Kb boundary
 //-------------------------------------------------------------------------
--D_FAR_DATA_START=0xFED0A  // place at beginning of user ram
--D_FAR_DATA_END=0xFEDAF
-
--D_FAR_INIT_BOTTOM=0xED09
--D_FAR_INIT_START=0xED0A     // make sure offset within page is the same of _FAR_DATA_LOCATION_START
--D_FAR_INIT_END=0xEDAF       // make sure offset within page is the same of _FAR_DATA_LOCATION_END
--D_FAR_INIT_TOP=0xEDB0       // double check with mirror area for overlaps
-
--D_USER_RAM_START=0xFEDB0
+// do not define this, avoid using far data definitions!
+//-D_FAR_DATA_START=0xFED0A  // place at beginning of user ram
+//-D_FAR_DATA_END=0xFEDAF
+//-D_FAR_INIT_BOTTOM=0xED09
+//-D_FAR_INIT_START=0xED0A     // make sure offset within page is the same of _FAR_DATA_LOCATION_START
+//-D_FAR_INIT_END=0xEDAF       // make sure offset within page is the same of _FAR_DATA_LOCATION_END
+//-D_FAR_INIT_TOP=0xEDB0       // double check with mirror area for overlaps
+//-D_FAR_ID_START=_FAR_INIT_START         
+//-D_FAR_ID_END=_FAR_INIT_END
+//-Z(FARCONST)FAR_ID=[_FAR_ID_START-_FAR_ID_END]/_CODE_PAGE_SIZE 
 
 // define the segments for ram based interrupt routine (in case used)
 // FSL_INT_RAM_CODE is the execution region for load region FSL_INT_ROM_CODE
@@ -144,8 +147,8 @@
 -D_CODE_START=_PROGRAM_AREA_START
 -D_CODE_END=_PROGRAM_AREA_END
 
--D_XCODE_START=_FAR_SEGMENT_START
--D_XCODE_END=_PROGRAM_AREA_END
+//-D_XCODE_START=_FAR_SEGMENT_START
+//-D_XCODE_END=_PROGRAM_AREA_END
 
 -D_CPP_INIT_START=_PROGRAM_AREA_START
 -D_CPP_INIT_END=_PROGRAM_AREA_END       // placed in the first 64K
@@ -155,9 +158,6 @@
 
 -D_SADDR_ID_START=_PROGRAM_AREA_START
 -D_SADDR_ID_END=_PROGRAM_AREA_END       // placed in the first 64K
-
--D_FAR_ID_START=_FAR_INIT_START         // placed in the first 64K     
--D_FAR_ID_END=_FAR_INIT_END
 
 -D_SWITCH_START=_PROGRAM_AREA_START
 -D_SWITCH_END=_PROGRAM_AREA_END
@@ -195,19 +195,21 @@
 //-------------------------------------------------------------------------
 //      Startup, Runtime-library, Near, Interrupts, CALLT functions code segment
 //-------------------------------------------------------------------------
--Z(CODE)RCODE=_RCODE_START-_RCODE_END
--Z(CODE)CODE=[_CODE_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_CODE_END]/_CODE_PAGE_SIZE
--Z(CODE)XCODE=[_XCODE_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_XCODE_END]/_CODE_PAGE_SIZE
+-Z(CODE)RCODE=[_RCODE_START-_RCODE_END]/_CODE_PAGE_SIZE
+-Z(CODE)CODE=[_CODE_START-_CODE_END]/_CODE_PAGE_SIZE
+
+// not applicable
+// -Z(CODE)XCODE=[_XCODE_START-_XCODE_END]/_CODE_PAGE_SIZE
 
 // C++ constructors
--Z(CONST)DIFUNCT=[_CPP_INIT_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_CPP_INIT_END]/_CODE_PAGE_SIZE 
+-Z(CONST)DIFUNCT=[_CPP_INIT_START-_CPP_INIT_END]/_CODE_PAGE_SIZE 
+
 
 //-------------------------------------------------------------------------
 //      Near initializer segments. Placed by default within the first 64K
 //-------------------------------------------------------------------------
--Z(CONST)NEAR_ID=[_NEAR_ID_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_NEAR_ID_END]/_CODE_PAGE_SIZE
--Z(CONST)SADDR_ID=[_SADDR_ID_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_SADDR_ID_END]/_CODE_PAGE_SIZE
--Z(FARCONST)FAR_ID=[_FAR_ID_START-_FAR_ID_END]/_CODE_PAGE_SIZE 
+-Z(CONST)NEAR_ID=[_NEAR_ID_START-_NEAR_ID_END]/_CODE_PAGE_SIZE
+-Z(CONST)SADDR_ID=[_SADDR_ID_START-_SADDR_ID_END]/_CODE_PAGE_SIZE
 
 //-------------------------------------------------------------------------
 //      Constant segments
@@ -215,11 +217,14 @@
 // symbols defined by the IAR IDE , refer to the mirror area
 -Z(CONST)NEAR_CONST=[_NEAR_CONST_LOCATION_START-_NEAR_CONST_LOCATION_END]/_CODE_PAGE_SIZE
 
-// only 64K of flash, ensure there is no overlap with mirror area in first 64K
--D_FAR_CONST_START=_FAR_SEGMENT_START
--D_FAR_CONST_END=_FAR_SEGMENT_END
--Z(CONST)FAR_CONST=[_FAR_CONST_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_FAR_CONST_END]/_CODE_PAGE_SIZE
--Z(CONST)SWITCH=[_SWITCH_START-_FAR_INIT_BOTTOM]/_CODE_PAGE_SIZE,[_FAR_INIT_TOP-_SWITCH_END]/_CODE_PAGE_SIZE
+// only 64K of flash, not applicable
+// -D_FAR_CONST_START=_FAR_SEGMENT_START
+// -D_FAR_CONST_END=_FAR_SEGMENT_END
+
+// not applicable
+// -Z(CONST)FAR_CONST=[_FAR_CONST_START-_FAR_CONST_END]/_CODE_PAGE_SIZE
+
+-Z(CONST)SWITCH=[_SWITCH_START-_SWITCH_END]/_CODE_PAGE_SIZE
 
 //-------------------------------------------------------------------------
 //      FSL must be included in the same 64K segment !
@@ -242,7 +247,10 @@
 
 -Z(DATA)NEAR_I,NEAR_Z,NEAR_N=_USER_RAM_START-_USER_RAM_END  // near data
 
--Z(FARDATA)FAR_I,FAR_N,FAR_Z=[_FAR_DATA_START-_FAR_DATA_END]/_CODE_PAGE_SIZE
+// FAR_Z is declared by cstartup code. Need to define this into the linker script
+// to be able to biuld, but should not consume resource on the target
+// The application should avoid using far data
+-Z(FARDATA)FAR_Z=[_USER_RAM_START-_USER_RAM_END]/_CODE_PAGE_SIZE
 
 -Z(DATA)CSTACK+_CSTACK_SIZE#_SADDR_START // Place from top of ram, STARTING just below saddr area
 

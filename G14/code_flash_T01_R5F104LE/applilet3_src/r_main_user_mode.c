@@ -75,7 +75,8 @@ fsl_u08 fslSecurityFlags;
 fsl_u08 fslBootFlag;
 fsl_u08 fslSwapState;
 fsl_fsw_t fslFlashShieldWindow;
-__far fsl_descriptor_t fslDescriptor;
+// __far fsl_descriptor_t fslDescriptor;
+fsl_descriptor_t fslDescriptor;
 fsl_u08 __far* fslVersionString;
 
 
