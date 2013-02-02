@@ -67,19 +67,17 @@
 
 -D_USER_ROM_END=0xFBFF                  // end of the application usable flash
 
--D_NEAR_SEGMENT_END=0xFBFF
-// -D_FAR_SEGMENT_END=                  // not applicable because of flash size...        
+
 
 -D_OCD_MONITOR_RESERVED_START=0xFC00    // need to leave last 1K block for OCD monitor
 -D_OCD_MONITOR_RESERVED_END=_ROM_END
-                    
+
 -D_FSL_RESERVED_RAM_START=0xFE900       // need to reserve this RAM space for the FSL when used
 -D_FSL_RESERVED_RAM_END=0xFED09         // defining the symbols, will be referenced in the linker map file
 
 -D_USER_RAM_START=0xFED0A
 -D_USER_RAM_END=0xFFE1F                 // ram limit, data buffers cannot be placed above this range
 -D_FSL_RAM_ISR_END=0xFFE1F              // ISR function for the library cannot be placed above this range
-
 
 //=================================================================================================
 //      User configuration
@@ -106,6 +104,8 @@
 
 -D_FSL_BASE_ADDRESS=0x4000      // where the FSL library code is located
 -D_PROGRAM_AREA_END=0xCFFF		// application code end
+-D_NEAR_SEGMENT_END=0xCFFF
+// -D_FAR_SEGMENT_END=                  // not applicable because of flash size...        
 
 // for this example linker script reserve the top 12K flash block for self programming
 // to reference the symbol APPLICATION_FLASH within the program, IAR extensions are needed 
@@ -145,22 +145,22 @@
 -D_RCODE_END=_BOOT_CLUSTER_0_PROGRAM_END
 
 -D_CODE_START=_PROGRAM_AREA_START
--D_CODE_END=_PROGRAM_AREA_END
+-D_CODE_END=_NEAR_SEGMENT_END
 
 //-D_XCODE_START=_FAR_SEGMENT_START
-//-D_XCODE_END=_PROGRAM_AREA_END
+//-D_XCODE_END=_FAR_SEGMENT_END
 
 -D_CPP_INIT_START=_PROGRAM_AREA_START
--D_CPP_INIT_END=_PROGRAM_AREA_END       // placed in the first 64K
+-D_CPP_INIT_END=_NEAR_SEGMENT_END       // placed in the first 64K
 
 -D_NEAR_ID_START=_PROGRAM_AREA_START
--D_NEAR_ID_END=_PROGRAM_AREA_END        // placed in the first 64K
+-D_NEAR_ID_END=_NEAR_SEGMENT_END        // placed in the first 64K
 
 -D_SADDR_ID_START=_PROGRAM_AREA_START
--D_SADDR_ID_END=_PROGRAM_AREA_END       // placed in the first 64K
+-D_SADDR_ID_END=_NEAR_SEGMENT_END       // placed in the first 64K
 
 -D_SWITCH_START=_PROGRAM_AREA_START
--D_SWITCH_END=_PROGRAM_AREA_END
+-D_SWITCH_END=_NEAR_SEGMENT_END
 
 -D_FDL_START=_PROGRAM_AREA_START
 -D_FDL_END=_PROGRAM_AREA_END
@@ -248,7 +248,7 @@
 -Z(DATA)NEAR_I,NEAR_Z,NEAR_N=_USER_RAM_START-_USER_RAM_END  // near data
 
 // FAR_Z is declared by cstartup code. Need to define this into the linker script
-// to be able to biuld, but should not consume resource on the target
+// to be able to build, but should not consume resource on the target
 // The application should avoid using far data
 -Z(FARDATA)FAR_Z=[_USER_RAM_START-_USER_RAM_END]/_CODE_PAGE_SIZE
 
