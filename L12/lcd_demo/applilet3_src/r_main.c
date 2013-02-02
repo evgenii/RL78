@@ -114,7 +114,7 @@ void main(void)
     R_MAIN_UserInit();
     /* Start user code. Do not edit comment generated here */
 
-#if 1
+#if 0
     /* test the display with different patterns */
     LCD_selfTest();
 #endif
