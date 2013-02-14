@@ -52,7 +52,7 @@
 -Z(CODE)CLTVEC=00080-000BF              // CALLT vector segment. Constant location
 -Z(CODE)OPTBYTE=000C0-000C3             // OPTION BYTES segment. Constant location
 -Z(CODE)SECUID=000C4-000CD              // SECURITY_ID segment. Constant location
--D_RAM_END=0xFFEDF                      // top of ram memory - 5.5KB total
+-D_RAM_END=0xFFEDF                      // top of ram memory - 4KB total
 -D_ROM_END=0xFFFF                       // Total flash on chip - 64K
 -D_WRKSEG_START=0xFFE20                 // work segment
 -D_SADDR_START=0xFFE20                  // short address area
@@ -124,12 +124,12 @@
 //      from a 64 Kb boundary
 //-------------------------------------------------------------------------
 // do not define this, avoid using far data definitions!
-//-D_FAR_DATA_START=0xFED0A  // place at beginning of user ram
-//-D_FAR_DATA_END=0xFEDAF
-//-D_FAR_INIT_BOTTOM=0xED09
-//-D_FAR_INIT_START=0xED0A     // make sure offset within page is the same of _FAR_DATA_LOCATION_START
-//-D_FAR_INIT_END=0xEDAF       // make sure offset within page is the same of _FAR_DATA_LOCATION_END
-//-D_FAR_INIT_TOP=0xEDB0       // double check with mirror area for overlaps
+//-D_FAR_DATA_START=0xFF30A  // place at beginning of user ram
+//-D_FAR_DATA_END=0xFF3AF
+//-D_FAR_INIT_BOTTOM=0xF309
+//-D_FAR_INIT_START=0xF30A     // make sure offset within page is the same of _FAR_DATA_LOCATION_START
+//-D_FAR_INIT_END=0xF3AF       // make sure offset within page is the same of _FAR_DATA_LOCATION_END
+//-D_FAR_INIT_TOP=0xF3B0       // double check with mirror area for overlaps
 //-D_FAR_ID_START=_FAR_INIT_START         
 //-D_FAR_ID_END=_FAR_INIT_END
 //-Z(FARCONST)FAR_ID=[_FAR_ID_START-_FAR_ID_END]/_CODE_PAGE_SIZE 
@@ -254,7 +254,7 @@
 -Z(DATA)NEAR_I,NEAR_Z,NEAR_N=_USER_RAM_START-_USER_RAM_END  // near data
 
 // FAR_Z is declared by cstartup code. Need to define this into the linker script
-// to be able to biuld, but should not consume resource on the target
+// to be able to build, but should not consume resource on the target
 // The application should avoid using far data
 -Z(FARDATA)FAR_Z=[_USER_RAM_START-_USER_RAM_END]/_CODE_PAGE_SIZE
 

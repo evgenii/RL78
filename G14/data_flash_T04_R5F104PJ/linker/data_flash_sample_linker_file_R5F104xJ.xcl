@@ -117,12 +117,12 @@
 //      from a 64 Kb boundary
 //-------------------------------------------------------------------------
 // do not define this, avoid using far data definitions!
-//-D_FAR_DATA_START=0xFED0A  // place at beginning of user ram
-//-D_FAR_DATA_END=0xFEDAF
-//-D_FAR_INIT_BOTTOM=0xED09
-//-D_FAR_INIT_START=0xED0A     // make sure offset within page is the same of _FAR_DATA_LOCATION_START
-//-D_FAR_INIT_END=0xEDAF       // make sure offset within page is the same of _FAR_DATA_LOCATION_END
-//-D_FAR_INIT_TOP=0xEDB0       // double check with mirror area for overlaps
+//-D_FAR_DATA_START=0xFA30A  // place at beginning of user ram
+//-D_FAR_DATA_END=0xFA3AF
+//-D_FAR_INIT_BOTTOM=0xA309
+//-D_FAR_INIT_START=0xA30A     // make sure offset within page is the same of _FAR_DATA_LOCATION_START
+//-D_FAR_INIT_END=0xA3AF       // make sure offset within page is the same of _FAR_DATA_LOCATION_END
+//-D_FAR_INIT_TOP=0xA3B0       // double check with mirror area for overlaps
 //-D_FAR_ID_START=_FAR_INIT_START         
 //-D_FAR_ID_END=_FAR_INIT_END
 //-Z(FARCONST)FAR_ID=[_FAR_ID_START-_FAR_ID_END]/_CODE_PAGE_SIZE 
