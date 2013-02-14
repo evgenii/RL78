@@ -172,9 +172,4 @@ pip-log.txt
 *.map
 *.s87
 *.bat
-/code_flash_T01_R5F104LE/fslib/fsl.h
-/code_flash_T01_R5F104LE/fslib/fsl.r87
-/code_flash_T01_R5F104LE/fslib/fsl_types.h
-/code_flash_T01_R5F104PJ/fslib/fsl_types.h
-/code_flash_T01_R5F104PJ/fslib/fsl.h
-/code_flash_T01_R5F104PJ/fslib/fsl.r87
+
