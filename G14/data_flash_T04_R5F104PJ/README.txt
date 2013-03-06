@@ -10,7 +10,7 @@ Select "EEPROM_EMULATION_RL78" from the product list.
 
 
 Note: the FDL T04 (pico library) is the one being used in the example, so you should select this. 
-This flavor does can *not* be used with an eeprom emulation layer on top.
+This flavor can *not* be used with an eeprom emulation layer on top.
 
 The more featured T02 (tiny) & T01 (full) are siutable for more complex data flash management.
 These can be used together with the respective eeprom emulation library EEL T02 / T01
