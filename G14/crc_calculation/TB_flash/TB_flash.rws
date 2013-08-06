@@ -1,0 +1,12 @@
+<RfpWorkspace>
+  <ProductVersion>2.01.01.00</ProductVersion>
+  <FormatVersion>2.0</FormatVersion>
+  <WindowMode>1</WindowMode>
+  <ActiveProjectName>TB_flash</ActiveProjectName>
+  <Name project="TB_flash">
+    <RelativePath>TB_flash\TB_flash.rpj</RelativePath>
+    <ActiveProgramName>E:\git\RL78\G14\crc_calculation\Debug\Exe\crc_calculation.mot</ActiveProgramName>
+    <ProgramName>E:\git\RL78\G14\crc_calculation\Debug\Exe\crc_calculation.mot</ProgramName>
+    <UserBoot>0</UserBoot>
+  </Name>
+</RfpWorkspace>
