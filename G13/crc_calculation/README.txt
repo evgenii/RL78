@@ -4,7 +4,7 @@ It has been tested on the RL78G13 TB (512K device, R5F100SL)
 
 The project is for IAR Embedded Workbench.
 
-After the aplication started, LED1 keeps blinking to show the code has been flashed correctly and is working past the CRC calculation stage.
+After the application started, LED1 keeps blinking to show the code has been flashed correctly and is working past the CRC calculation stage.
 
 If the CRC calculation is correct, LED2 gets turned on.
 
@@ -34,4 +34,4 @@ A workspace and project for the renesas flash programmer is placed in the TB_fla
 However the E1 emulator cannot be used for debugging within IAR in this configuration.
 This since the rom monitor firmware is included in the last 512/256 bytes of the flash address space and there is a conflict with the CRC signature placement in the last 4 bytes of the flash
 
-An alternative would be to place the signature in the data flash, which is separate by the code flash
+An alternative would be to place the signature in the data flash, which is separate by the code flash.

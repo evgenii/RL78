@@ -4,7 +4,7 @@ It has been tested on the RL78G14 TB (64K device, R5F104LE)
 
 The project is for IAR Embedded Workbench.
 
-After the aplication started, LED1 keeps blinking to show the code has been flashed correctly and is working past the CRC calculation stage.
+After the application started, LED1 keeps blinking to show the code has been flashed correctly and is working past the CRC calculation stage.
 
 If the CRC calculation is correct, LED2 gets turned on.
 
