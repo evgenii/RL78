@@ -96,7 +96,7 @@ void main(void)
     /* High-speed CRC */
 	    
     /* Get High-speed CRC calculated result that OC output. */
-	oc_calc_hs_crc = (uint16_t*)HIGHSPEED_CALC_ADDR;
+	oc_calc_hs_crc = (uint16_t __far*)HIGHSPEED_CALC_ADDR;
 
 	result_hs_crc = my_HighSpeedCRCProc();
 

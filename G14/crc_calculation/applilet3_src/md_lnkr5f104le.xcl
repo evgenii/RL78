@@ -141,22 +141,15 @@
 //      Startup, Runtime-library, Near, Interrupt 
 //      and CALLT functions code segment and near switch.
 //-------------------------------------------------------------------------
-// -Z(CODE)RCODE,CODE=000D8-0FDFF
-// -Z(CONST)SWITCH=000D8-0FDFF
--Z(CODE)RCODE,CODE=000D8-_CRC_TEST_FLASH_END
--Z(CONST)SWITCH=000D8-_CRC_TEST_FLASH_END
-
-
+-Z(CODE)RCODE,CODE=000D8-0FDFF
+-Z(CONST)SWITCH=000D8-0FDFF
 
 //-------------------------------------------------------------------------
 //      Near data initializer segments. 
 //-------------------------------------------------------------------------
-// -Z(CONST)NEAR_ID=[000D8-0FDFF]/10000
-// -Z(CONST)SADDR_ID=[000D8-0FDFF]/10000
-// -Z(CONST)DIFUNCT=[000D8-0FDFF]/10000
--Z(CONST)NEAR_ID=[000D8-_CRC_TEST_FLASH_END]/10000
--Z(CONST)SADDR_ID=[000D8-_CRC_TEST_FLASH_END]/10000
--Z(CONST)DIFUNCT=[000D8-_CRC_TEST_FLASH_END]/10000
+-Z(CONST)NEAR_ID=[000D8-0FDFF]/10000
+-Z(CONST)SADDR_ID=[000D8-0FDFF]/10000
+-Z(CONST)DIFUNCT=[000D8-0FDFF]/10000
 
 //-------------------------------------------------------------------------
 //      Allocate the read/write segments that are mapped to RAM.
@@ -205,10 +198,10 @@
 //-------------------------------------------------------------------------
 //      CRC specific options
 //-------------------------------------------------------------------------
--Hff -h0x0000-0xFFFB             
+-Hff -h0x0000-_CRC_TEST_FLASH_END             
 
 // -Jsize,algo,flag,sym,seg,align,m#val
--J2,crc16,L,,CHECKSUM,,0x0=0x0-0xFFFB
+-J2,crc16,L,,CHECKSUM,,0x0=0x0-_CRC_TEST_FLASH_END
 
 -Z(CONST)CHECKSUM=0xFFFC-0xFFFD
 

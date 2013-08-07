@@ -31,4 +31,7 @@ The high speed CRC sum is computed over flash range 0x0 t0 0xFFFB
 The project can be flashed via the renesas flash programmer software.
 A workspace and project for the renesas flash programmer is placed in the TB_flash folder, to flash the application using the E1 emulator. 
 
-However the E1 emulator cannot be used for debugging within IAR since the rom monitor firmware is included in the last 512/256 bytes of the flash and conflicts with the CRC signature placement in the last 4 bytes of the flash.
+However the E1 emulator cannot be used for debugging within IAR in this configuration.
+This since the rom monitor firmware is included in the last 512/256 bytes of the flash address space and there is a conflict with the CRC signature placement in the last 4 bytes of the flash
+
+An alternative would be to place the signature in the data flash, which is separate by the code flash
