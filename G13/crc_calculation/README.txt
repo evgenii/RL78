@@ -21,9 +21,9 @@ The checksum is placed in location 0x7FFFC-0x7FFFD
 	-Z(CONST)CHECKSUM=0x7FFFC-0x7FFFD
 
 
-The high speed CRC sum is computed over flash range 0x0 t0 0xFFFB
+The high speed CRC sum is computed over flash range 0x0 t0 0x7FFFB
 
-	-Hff -h0x0000-0xFFFB 
+	-Hff -h0x0000-0x7FFFB 
 
 
 
