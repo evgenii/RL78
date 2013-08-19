@@ -1,0 +1,310 @@
+
+///******************************************************************************
+//* DISCLAIMER
+//* This software is supplied by Renesas Electronics Corporation and is only 
+//* intended for use with Renesas products. No other uses are authorized. This 
+//* software is owned by Renesas Electronics Corporation and is protected under 
+//* all applicable laws, including copyright laws.
+//* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING 
+//* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT 
+//* LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE 
+//* AND NON-INFRINGEMENT.  ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.
+//* TO THE MAXIMUM EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS 
+//* ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES SHALL BE LIABLE 
+//* FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR 
+//* ANY REASON RELATED TO THIS SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE 
+//* BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+//* Renesas reserves the right, without notice, to make changes to this software 
+//* and to discontinue the availability of this software.  By using this software, 
+//* you agree to the additional terms and conditions found by accessing the 
+//* following link:
+//* http://www.renesas.com/disclaimer
+//*
+//* Copyright (C) 2011, 2013 Renesas Electronics Corporation. All rights reserved.
+//******************************************************************************/
+
+///*
+//*******************************************************************************
+//* File Name    : md_lnkr5f100sl.xcl
+//* Version      : Applilet3 for RL78/G13 V2.00.00.08 [12 Apr 2013]
+//* Device(s)    : R5F100SL
+//* Tool-Chain   : IAR Systems iccrl78
+//* Description  : This is the IAR link file.
+//* Creation Date: 17/07/2013
+//*******************************************************************************
+//*/
+//-------------------------------------------------------------------------
+//      XLINK command file template for RL78 microcontroller R5F100SL.
+//
+//      This file can be used to link object files from the RL78
+//      Assembler, ARL78, and the C/C++ compiler ICCRL78.
+//
+//          This file is generated from the device file:
+//          DR5F100SL.DVF
+//          Copyright(C) 2012 Renesas
+//          Format version V3.00, File version V1.12
+//-------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------
+//      The following segments are defined in this template link file:
+//
+//      INTVEC      -- Interrupt vectors.
+//      CLTVEC      -- Calltable vectors.
+//      RCODE       -- Code used by C/C++ startup and run-time library.
+//      CODE        -- Code used by __near_func, __interrupt and __callt functions.
+//      XCODE       -- Code used by __far_func functions.
+//      NEAR_CONST_ -- Constants used by __near const.
+//      FAR_CONST   -- Constants used by __far const.
+//      SADDR_x     -- Variables used by __saddr.
+//      NEAR_x      -- Variables used by __near.
+//      FAR_x       -- Variables used by __far.
+//      NEAR_HEAP   -- The heap used by near data model.
+//      FAR_HEAP    -- The heap used by far data model.
+//      SWITCH      -- Switch tables used by near code model.
+//      FSWITCH     -- Switch tables used by far model.
+//      DIFUNCT     -- Dynamic initialization vector used by C++
+//
+//      Where _x could be one of:
+//
+//      _Z      -- Initialized data (initvalue = 0 or without init value).
+//      _I      -- Initialized data (initvalue != 0).
+//      _ID     -- The initial values of _I.
+//      _N      -- Uninitialized data, used by __no_init.
+//-------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------
+//      Define CPU
+//-------------------------------------------------------------------------
+
+-cRL78
+
+//-------------------------------------------------------------------------
+//      Size of the stack.
+//      Remove comment and modify number if used from command line.
+//-------------------------------------------------------------------------
+
+//-D_CSTACK_SIZE=80
+
+//-------------------------------------------------------------------------
+//      Size of the heaps.
+//      Remove comment and modify number if used from command line.
+//-------------------------------------------------------------------------
+
+//-D_NEAR_HEAP_SIZE=400
+//-D_FAR_HEAP_SIZE=4000
+
+//-------------------------------------------------------------------------
+//      Near constant location.
+//      0 -> 0xF0000-0xFFFFF mirrored in rom area 0x00000 - 0x0FFFF
+//      1 -> 0xF0000-0xFFFFF mirrored in rom area 0x10000 - 0x1FFFF
+//      2 -> Writeable constants
+//      Remove comments and modify number if used from command line.
+//-------------------------------------------------------------------------
+
+//-D_NEAR_CONST_LOCATION=0
+//-D_NEAR_CONST_LOCATION_START=03000
+//-D_NEAR_CONST_LOCATION_END=07EFF
+
+//-------------------------------------------------------------------------
+//      Define the format functions used by printf/scanf.
+//      Default is auto formatting.
+//      Remove appropriate comment(s) to get desired formatting
+//      if used from command line.
+//-------------------------------------------------------------------------
+
+//-e_PrintfTiny=_Printf
+//-e_PrintfSmall=_Printf
+//-e_PrintfSmallNoMb=_Printf
+//-e_PrintfLarge=_Printf
+//-e_PrintfLargeNoMb=_Printf
+//-e_PrintfFull=_Printf
+
+//-e_PrintfFullNoMb=_Printf
+
+//-e_ScanfSmall=_Scanf
+//-e_ScanfSmallNoMb=_Scanf
+//-e_ScanfLarge=_Scanf
+//-e_ScanfLargeNoMb=_Scanf
+//-e_ScanfFull=_Scanf
+
+//-e_ScanfFullNoMb=_Scanf
+
+//-------------------------------------------------------------------------
+//      Define replacement of the default library math functions.
+//      Choose either of: 
+//      1) smaller and faster versions
+//      2) more accurate versions 
+//      Remove appropriate comment(s) from either
+//      1) or 2), but not both, if used from command line.
+//-------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------
+// 1) Smaller and faster versions
+//-------------------------------------------------------------------------
+//-e__iar_sin_small=sin
+//-e__iar_cos_small=cos
+//-e__iar_tan_small=tan
+//-e__iar_log_small=log
+//-e__iar_log10_small=log10
+//-e__iar_exp_small=exp
+//-e__iar_pow_small=pow
+//-e__iar_Sin_small=__iar_Sin
+//-e__iar_sin_smallf=sinf
+//-e__iar_cos_smallf=cosf
+//-e__iar_tan_smallf=tanf
+//-e__iar_log_smallf=logf
+//-e__iar_log10_smallf=log10f
+//-e__iar_exp_smallf=expf
+//-e__iar_pow_smallf=powf
+//-e__iar_Sin_smallf=__iar_Sinf
+//-e__iar_sin_smalll=sinl
+//-e__iar_cos_smalll=cosl
+//-e__iar_tan_smalll=tanl
+//-e__iar_log_smalll=logl
+//-e__iar_log10_smalll=log10l
+//-e__iar_exp_smalll=expl
+//-e__iar_pow_smalll=powl
+//-e__iar_Sin_smalll=__iar_Sinl
+
+//-------------------------------------------------------------------------
+// 2) More accurate versions
+//-------------------------------------------------------------------------
+//-e__iar_sin_accurate=sin
+//-e__iar_cos_accurate=cos
+//-e__iar_tan_accurate=tan
+//-e__iar_pow_accurate=pow
+//-e__iar_Sin_accurate=__iar_Sin
+//-e__iar_Pow_accurate=__iar_Pow
+//-e__iar_sin_accuratef=sinf
+//-e__iar_cos_accuratef=cosf
+//-e__iar_tan_accuratef=tanf
+//-e__iar_pow_accuratef=powf
+//-e__iar_Sin_accuratef=__iar_Sinf
+//-e__iar_Pow_accuratef=__iar_Powf
+//-e__iar_sin_accuratel=sinl
+//-e__iar_cos_accuratel=cosl
+//-e__iar_tan_accuratel=tanl
+//-e__iar_pow_accuratel=powl
+//-e__iar_Sin_accuratel=__iar_Sinl
+//-e__iar_Pow_accuratel=__iar_Powl
+
+//-------------------------------------------------------------------------
+//      Define if row buffering should be used by terminal output.
+//      Default is no buffering.
+//      Remove comment to get buffered terminal output if used from command line.
+//-------------------------------------------------------------------------
+
+//-e__write_buffered=__write
+
+//-------------------------------------------------------------------------
+//      Allocate the read only segments that are mapped to ROM.
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//      Interrupt vector segment.
+//-------------------------------------------------------------------------
+-Z(CODE)INTVEC=00000-0007F
+
+//-------------------------------------------------------------------------
+//      CALLT vector segment.
+//-------------------------------------------------------------------------
+-Z(CODE)CLTVEC=00080-000BF
+
+//-------------------------------------------------------------------------
+//      OPTION BYTES segment.
+//-------------------------------------------------------------------------
+-Z(CODE)OPTBYTE=000C0-000C3
+
+//-------------------------------------------------------------------------
+//      SECURITY_ID segment.
+//-------------------------------------------------------------------------
+-Z(CODE)SECUID=000C4-000CD
+
+//-------------------------------------------------------------------------
+//      Reserved ROM areas for OCD Firmware: 000CE-000D7
+//                                           7FF00-7FFFF
+//-------------------------------------------------------------------------
+-Z(CODE)OCNIROM1=000CE-000D7
+-Z(CODE)OCNIROM2=7FF00-7FFFF
+
+//-------------------------------------------------------------------------
+//      Near constant segments.
+//-------------------------------------------------------------------------
+--segment_mirror @NEAR_CONST=NEAR_CONST_ID
+-Z(CONST)NEAR_CONST_ID=_NEAR_CONST_LOCATION_START-_NEAR_CONST_LOCATION_END
+-Z(DATA)NEAR_CONST=(_NEAR_CONST_LOCATION_START+F0000)-(_NEAR_CONST_LOCATION_END+F0000)
+
+//-------------------------------------------------------------------------
+//      Startup, Runtime-library, Near, Interrupt 
+//      and CALLT functions code segment and near switch.
+//-------------------------------------------------------------------------
+-Z(CODE)RCODE,CODE=000D8-0FFFF
+
+-Z(CONST)SWITCH=000D8-0FDFF
+
+//-------------------------------------------------------------------------
+//      Near data initializer segments. 
+//-------------------------------------------------------------------------
+-Z(CONST)NEAR_ID=[000D8-0FDFF]/10000
+-Z(CONST)SADDR_ID=[000D8-0FDFF]/10000
+-Z(CONST)DIFUNCT=[000D8-0FDFF]/10000
+
+//-------------------------------------------------------------------------
+//      Far constant segments and far switch.
+//-------------------------------------------------------------------------
+-Z(CONST)FAR_ID=[07F00-7FDFF]/10000
+-Z(DATA)FAR_I=[F7F00-FFE1F]/10000
+
+-P(CONST)FAR_CONST,FSWITCH=[000D8-7FDFF]/10000
+
+//-------------------------------------------------------------------------
+//      Far functions code segment.
+//-------------------------------------------------------------------------
+-P(CODE)XCODE=[000D8-7FDFF]/10000
+
+//-------------------------------------------------------------------------
+//      Allocate the read/write segments that are mapped to RAM.
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//      EEPROM segment.
+//      Note: This segment will not be automatically created
+//            and it will not be initialised by CSTARTUP!
+//-------------------------------------------------------------------------
+-Z(DATA)EEPROM=F1000-F2FFF
+
+//-------------------------------------------------------------------------
+//      Short address data and workseg segments.
+//-------------------------------------------------------------------------
+-Z(DATA)WRKSEG=FFE20-FFEDF
+-Z(DATA)SADDR_I,SADDR_Z,SADDR_N=FFE20-FFEDF
+
+//-------------------------------------------------------------------------
+//      Near data segments.
+//-------------------------------------------------------------------------
+-Z(DATA)NEAR_I,NEAR_Z,NEAR_N=F7F00-FFE1F
+
+//-------------------------------------------------------------------------
+//      Far data segments.
+//-------------------------------------------------------------------------
+-Z(DATA)FAR_Z=[F7F00-FFE1F]/10000
+-P(DATA)FAR_N=[F7F00-FFE1F]/10000
+
+//-------------------------------------------------------------------------
+//      Heap segments.
+//-------------------------------------------------------------------------
+-Z(DATA)NEAR_HEAP+_NEAR_HEAP_SIZE=F7F00-FFE1F
+-Z(DATA)FAR_HEAP+_FAR_HEAP_SIZE=[F7F00-FFE1F]/10000
+
+//-------------------------------------------------------------------------
+//      Stack segment.
+//-------------------------------------------------------------------------
+-Z(DATA)CSTACK+_CSTACK_SIZE=F7F00-FFE1F
+
+//-------------------------------------------------------------------------
+//      Select the output file format if used from command line.
+//      Remove comment to select the file format if used from command line.
+//-------------------------------------------------------------------------
+//-Fdebug
+
+//-------------------------------------------------------------------------
+//      End of File
+//-------------------------------------------------------------------------
