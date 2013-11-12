@@ -10,11 +10,15 @@
     <debug>1</debug>
     <settings>
       <name>General</name>
-      <archiveVersion>4</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
         <version>1</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
+        <option>
+          <name>GenCodeFarFar</name>
+          <state>0</state>
+        </option>
         <option>
           <name>GenCodeModel</name>
           <version>0</version>
@@ -78,7 +82,7 @@
         </option>
         <option>
           <name>GenLibInFormatter</name>
-          <version>1</version>
+          <version>2</version>
           <state>0</state>
         </option>
         <option>
@@ -87,7 +91,7 @@
         </option>
         <option>
           <name>GenLibOutFormatter</name>
-          <version>1</version>
+          <version>2</version>
           <state>0</state>
         </option>
         <option>
@@ -134,7 +138,7 @@
         </option>
         <option>
           <name>GenNearConstSize</name>
-          <state>24</state>
+          <state>24.00</state>
         </option>
         <option>
           <name>GenMathFunctionVariant</name>
@@ -149,9 +153,9 @@
     </settings>
     <settings>
       <name>ICCRL78</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
-        <version>6</version>
+        <version>7</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -225,8 +229,8 @@
         </option>
         <option>
           <name>IccOptAllowList</name>
-          <version>1</version>
-          <state>1111111</state>
+          <version>2</version>
+          <state>11111110</state>
         </option>
         <option>
           <name>IccWrksegEnable</name>
@@ -377,14 +381,6 @@
           <state></state>
         </option>
         <option>
-          <name>IccdAggressiveInlining</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>IccdAggressiveUnrolling</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>IccCppInlineSemantics</name>
           <state>0</state>
         </option>
@@ -396,13 +392,17 @@
           <name>IccFloatSemantics</name>
           <state>0</state>
         </option>
+        <option>
+          <name>IccNoSizeConst</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ARL78</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
-        <version>1</version>
+        <version>2</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -547,6 +547,10 @@
           <name>AsmDataModel</name>
           <state>0</state>
         </option>
+        <option>
+          <name>PreInclude</name>
+          <state></state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -572,7 +576,7 @@
     </settings>
     <settings>
       <name>XLINK</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
         <version>14</version>
         <wantNonLocal>1</wantNonLocal>
@@ -757,7 +761,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>RSKRL78L12_lcd_demo.a87</state>
+          <state>RL78L12_lcd_demo.a87</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -787,7 +791,7 @@
         </option>
         <option>
           <name>OverlaySystemMap</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>RawBinaryFile</name>
@@ -858,7 +862,7 @@
     </settings>
     <settings>
       <name>XAR</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
         <version>0</version>
         <wantNonLocal>1</wantNonLocal>
@@ -879,7 +883,7 @@
     </settings>
     <settings>
       <name>INTERNAL_HWSUPPORT</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data/>
     </settings>
     <settings>
@@ -896,11 +900,15 @@
     <debug>0</debug>
     <settings>
       <name>General</name>
-      <archiveVersion>4</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
         <version>1</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
+        <option>
+          <name>GenCodeFarFar</name>
+          <state>0</state>
+        </option>
         <option>
           <name>GenCodeModel</name>
           <version>0</version>
@@ -964,7 +972,7 @@
         </option>
         <option>
           <name>GenLibInFormatter</name>
-          <version>1</version>
+          <version>2</version>
           <state>0</state>
         </option>
         <option>
@@ -973,7 +981,7 @@
         </option>
         <option>
           <name>GenLibOutFormatter</name>
-          <version>1</version>
+          <version>2</version>
           <state>0</state>
         </option>
         <option>
@@ -1035,9 +1043,9 @@
     </settings>
     <settings>
       <name>ICCRL78</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
-        <version>6</version>
+        <version>7</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1111,8 +1119,8 @@
         </option>
         <option>
           <name>IccOptAllowList</name>
-          <version>1</version>
-          <state>1111111</state>
+          <version>2</version>
+          <state>11111110</state>
         </option>
         <option>
           <name>IccWrksegEnable</name>
@@ -1263,14 +1271,6 @@
           <state></state>
         </option>
         <option>
-          <name>IccdAggressiveInlining</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>IccdAggressiveUnrolling</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>IccCppInlineSemantics</name>
           <state>0</state>
         </option>
@@ -1282,13 +1282,17 @@
           <name>IccFloatSemantics</name>
           <state>0</state>
         </option>
+        <option>
+          <name>IccNoSizeConst</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ARL78</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
-        <version>1</version>
+        <version>2</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1432,6 +1436,10 @@
           <name>AsmDataModel</name>
           <state>0</state>
         </option>
+        <option>
+          <name>PreInclude</name>
+          <state></state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -1457,7 +1465,7 @@
     </settings>
     <settings>
       <name>XLINK</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
         <version>14</version>
         <wantNonLocal>1</wantNonLocal>
@@ -1743,7 +1751,7 @@
     </settings>
     <settings>
       <name>XAR</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data>
         <version>0</version>
         <wantNonLocal>1</wantNonLocal>
@@ -1764,7 +1772,7 @@
     </settings>
     <settings>
       <name>INTERNAL_HWSUPPORT</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>5</archiveVersion>
       <data/>
     </settings>
     <settings>
