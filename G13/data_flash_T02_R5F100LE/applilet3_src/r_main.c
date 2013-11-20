@@ -55,6 +55,8 @@ Includes
 Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
+void fdlTest(void);
+void eelTest(void);
 
 char libVersion[24];
 unsigned char  __far * version;
@@ -81,6 +83,9 @@ type_X arrayX;
 type_Z arrayZ;
 
 eel_u16 eelFreeSpace;
+
+
+
 
 // On RL78/G13
 #define NUM_DATAFLASH_BLOCKS    4
@@ -122,13 +127,54 @@ void main(void)
 {
     R_MAIN_UserInit();
     /* Start user code. Do not edit comment generated here */
-  
-	uint32_t i,j;
-	// fdl_descriptor_t descriptor;
+    uint32_t i;
 
     R_IT_Start();
     R_INTC0_Start(); 
     
+    // test the basic FDL access
+	fdlTest();
+    
+    // now test the Eeprom emulation
+	eelTest();
+   
+   
+   // now an endless loop
+	while(1) {	  
+	  
+	  /* some fancy toggling on success */
+	  P6_bit.no3 = ~ P6_bit.no3;
+	  for(i=0;i<100000;i++);
+	  P6_bit.no3 = ~ P6_bit.no3;
+	  for(i=0;i<100000;i++);
+	  P6_bit.no3 = ~ P6_bit.no3;
+	  for(i=0;i<100000;i++);
+	  P6_bit.no3 = ~ P6_bit.no3;
+	  for(i=0;i<100000;i++);			  
+    }
+    
+    /* End user code. Do not edit comment generated here */
+}
+
+
+/***********************************************************************************************************************
+* Function Name: R_MAIN_UserInit
+* Description  : This function adds user code before implementing main function.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+void R_MAIN_UserInit(void)
+{
+    /* Start user code. Do not edit comment generated here */
+    EI();
+    /* End user code. Do not edit comment generated here */
+}
+
+/* Start user code for adding. Do not edit comment generated here */
+void fdlTest(void) {
+
+    uint32_t i,j;
+        
     /* Block 0,1 are reserved for EEL 
      * Physical Block 2,3 are used by FDL 
      * These are mapped to logical blocks 0,1
@@ -284,8 +330,7 @@ void main(void)
        FDL_Handler(); 
      }  
      while (dataFlashRequest.status_enu == FDL_BUSY);     
-     
-     
+       
      if(dataFlashRequest.status_enu != FDL_OK) {	 
        P6_bit.no3 = 0;
        while(1);
@@ -293,21 +338,44 @@ void main(void)
        
    } 
 	
-   
-   
-   // now test the eeprom emulation
-   eepromStatus = EEL_Init();
-   if(eepromStatus != EEL_OK) {	 
-       P6_bit.no3 = 0;
-       while(1);
-     } 
-   
-   // check the status, should return EEL_DRIVER_PASSIVE
-   EEL_GetDriverStatus(&eelDriverStatus);
-   
-   // open logically the eeprom
-   EEL_Open();
+   FDL_Close();
+  
+}
 
+void eelTest(void) {
+   
+	uint32_t i,j;
+
+	// FDL needs to be initialized before
+	
+    /* Block 0,1 are reserved for EEL 
+     * Physical Block 2,3 are used by FDL 
+     * These are mapped to logical blocks 0,1
+     * Configuration is done within fdl_descriptor.h    
+     */   
+	dataFlashStatus =  FDL_Init(&fdl_descriptor_str);
+	
+    // in case of error, lit LED 2 and stay there
+	if(dataFlashStatus != FDL_OK) {	 
+	  P6_bit.no3 = 0;
+      while(1);
+	}
+	
+    FDL_Open();
+
+	
+	eepromStatus = EEL_Init();
+	if(eepromStatus != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	} 
+	
+	// check the status, should return EEL_DRIVER_PASSIVE
+	EEL_GetDriverStatus(&eelDriverStatus);
+	
+	// open logically the eeprom
+	EEL_Open();
+	
     // just copy the version string for info
 	version = EEL_GetVersionString();
 	i = 0;
@@ -317,262 +385,291 @@ void main(void)
 	}
 	while((*version) != 0);
     
-   // check the status, should return EEL_DRIVER_PASSIVE
-   EEL_GetDriverStatus(&eelDriverStatus);     
-   
-   eepromRequest.address_pu08 = 0;
-   eepromRequest.identifier_u08 = 0;
-   eepromRequest.command_enu = EEL_CMD_FORMAT;
+	// check the status, should return EEL_DRIVER_PASSIVE
+	EEL_GetDriverStatus(&eelDriverStatus);     
+	
+	eepromRequest.address_pu08 = 0;
+	eepromRequest.identifier_u08 = 0;
+	eepromRequest.command_enu = EEL_CMD_FORMAT;
+	
+	/* command initiation - FORMAT */       
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	} 
+	
+	// check the status, should return EEL_DRIVER_PASSIVE
+	EEL_GetDriverStatus(&eelDriverStatus);   
+	
+	eepromRequest.address_pu08 = 0;
+	eepromRequest.identifier_u08 = 0;
+	eepromRequest.command_enu = EEL_CMD_STARTUP;
+	
+	/* command initiation - STARTUP */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	}  
+	
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus); 
+	
+	// now try to write some data
+	i = 0;
+	for(j=0;j<sizeof(type_A);j++) arrayA[j] = i++;
+	for(j=0;j<sizeof(type_B);j++) arrayB[j] = i++;
+	for(j=0;j<sizeof(type_E);j++) arrayE[j] = i++;
+	for(j=0;j<sizeof(type_F);j++) arrayF[j] = i++;
+	for(j=0;j<sizeof(type_Z);j++) arrayZ[j] = i++;   
+	
+	// write A
+	eepromRequest.address_pu08 = &arrayA[0];
+	eepromRequest.identifier_u08 = 1;
+	eepromRequest.command_enu = EEL_CMD_WRITE;
+	
+	/* command initiation - WRITE */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	}  
+	
+	
+	// write B
+	eepromRequest.address_pu08 = &arrayB[0];
+	eepromRequest.identifier_u08 = 2;
+	eepromRequest.command_enu = EEL_CMD_WRITE;
+	
+	/* command initiation - WRITE */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	}
+	
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);    
+	
+	// write E
+	eepromRequest.address_pu08 = &arrayE[0];
+	eepromRequest.identifier_u08 = 5;
+	eepromRequest.command_enu = EEL_CMD_WRITE;
+	
+	/* command initiation - WRITE */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	}
+	
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);   
+	
+	// write F
+	eepromRequest.address_pu08 = &arrayF[0];
+	eepromRequest.identifier_u08 = 6;
+	eepromRequest.command_enu = EEL_CMD_WRITE;
+	
+	/* command initiation - WRITE */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	}
+	
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);   
+	
+	// write Z
+	eepromRequest.address_pu08 = &arrayZ[0];
+	eepromRequest.identifier_u08 = 8;
+	eepromRequest.command_enu = EEL_CMD_WRITE;
+	
+	/* command initiation - WRITE */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	}
+	
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);    
+	
+	eepromRequest.address_pu08 = 0;
+	eepromRequest.identifier_u08 = 0;
+	eepromRequest.command_enu = EEL_CMD_VERIFY;
+	
+	/* command initiation - VERIFY */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);     
 
-   /* command initiation - FORMAT */       
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   } 
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);  
+	
+	// if the data retention is not guaranteed, the refresh command shall help
+	if(eepromRequest.status_enu == EEL_ERR_VERIFY) {	 
+		
+		eepromRequest.address_pu08 = 0;
+		eepromRequest.identifier_u08 = 0;
+		eepromRequest.command_enu = EEL_CMD_REFRESH;
+	
+		/* command initiation - VERIFY */ 
+		do  { 
+			EEL_Execute(&eepromRequest); 
+			EEL_Handler(); /* proceed background process */ 
+		}      
+		while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+		
+		/* command execution */ 
+		// a call to the Handler will return "idle" status
+		do  { 
+			EEL_Handler(); 
+		}  
+		while (eepromRequest.status_enu == EEL_BUSY);    
+				
+		if(eepromRequest.status_enu != EEL_OK) {	 
+			P6_bit.no3 = 0;
+			while(1);
+		};
+	}
 
-   // check the status, should return EEL_DRIVER_PASSIVE
-   EEL_GetDriverStatus(&eelDriverStatus);   
-   
-   eepromRequest.address_pu08 = 0;
-   eepromRequest.identifier_u08 = 0;
-   eepromRequest.command_enu = EEL_CMD_STARTUP;
+	
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);  
+	
+	// get the amount of free space, should return EEL_DRIVER_IDLE
+	eepromStatus = EEL_GetSpace(&eelFreeSpace);	
 
-   /* command initiation - STARTUP */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }  
-
-   // check the status, should return EEL_DRIVER_IDLE
-   EEL_GetDriverStatus(&eelDriverStatus); 
-   
-   // now try to write some data
-   i = 0;
-   for(j=0;j<sizeof(type_A);j++) arrayA[j] = i;
-   for(j=0;j<sizeof(type_B);j++) arrayB[j] = i;
-   for(j=0;j<sizeof(type_E);j++) arrayE[j] = i;
-   for(j=0;j<sizeof(type_F);j++) arrayF[j] = i;
-   for(j=0;j<sizeof(type_Z);j++) arrayZ[j] = i;   
-   
-   // write A
-   eepromRequest.address_pu08 = &arrayA[0];
-   eepromRequest.identifier_u08 = 1;
-   eepromRequest.command_enu = EEL_CMD_WRITE;
-
-   /* command initiation - WRITE */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }  
+	// check the status, should return EEL_DRIVER_IDLE
+	EEL_GetDriverStatus(&eelDriverStatus);  	
+	
+	eepromRequest.address_pu08 = 0;
+	eepromRequest.identifier_u08 = 0;
+	eepromRequest.command_enu = EEL_CMD_SHUTDOWN;
+	
+	/* command initiation - VERIFY */ 
+	do  { 
+		EEL_Execute(&eepromRequest); 
+		EEL_Handler(); /* proceed background process */ 
+	}      
+	while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
+	
+	/* command execution */ 
+	// a call to the Handler will return "idle" status
+	do  { 
+		EEL_Handler(); 
+	}  
+	while (eepromRequest.status_enu == EEL_BUSY);    
+	
+	if(eepromRequest.status_enu != EEL_OK) {	 
+		P6_bit.no3 = 0;
+		while(1);
+	};
 
 
-   // write B
-   eepromRequest.address_pu08 = &arrayB[0];
-   eepromRequest.identifier_u08 = 2;
-   eepromRequest.command_enu = EEL_CMD_WRITE;
-
-   /* command initiation - WRITE */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }
-   
-   // check the status, should return EEL_DRIVER_IDLE
-   EEL_GetDriverStatus(&eelDriverStatus);    
-   
-   // write E
-   eepromRequest.address_pu08 = &arrayE[0];
-   eepromRequest.identifier_u08 = 5;
-   eepromRequest.command_enu = EEL_CMD_WRITE;
-
-   /* command initiation - WRITE */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }
-   
-   // check the status, should return EEL_DRIVER_IDLE
-   EEL_GetDriverStatus(&eelDriverStatus);   
-   
-   // write F
-   eepromRequest.address_pu08 = &arrayF[0];
-   eepromRequest.identifier_u08 = 6;
-   eepromRequest.command_enu = EEL_CMD_WRITE;
-
-   /* command initiation - WRITE */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }
-   
-   // check the status, should return EEL_DRIVER_IDLE
-   EEL_GetDriverStatus(&eelDriverStatus);   
-   
-   // write Z
-   eepromRequest.address_pu08 = &arrayZ[0];
-   eepromRequest.identifier_u08 = 8;
-   eepromRequest.command_enu = EEL_CMD_WRITE;
-
-   /* command initiation - WRITE */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }
-   
-   // check the status, should return EEL_DRIVER_IDLE
-   EEL_GetDriverStatus(&eelDriverStatus);    
-
-   eepromRequest.address_pu08 = 0;
-   eepromRequest.identifier_u08 = 0;
-   eepromRequest.command_enu = EEL_CMD_VERIFY;
-   
-   /* command initiation - VERIFY */ 
-   do  { 
-     EEL_Execute(&eepromRequest); 
-     EEL_Handler(); /* proceed background process */ 
-   }      
-   while (eepromRequest.status_enu == EEL_ERR_REJECTED); 
-   
-   /* command execution */ 
-   // a call to the Handler will return "idle" status
-   do  { 
-     EEL_Handler(); 
-   }  
-   while (eepromRequest.status_enu == EEL_BUSY);     
-   
-   if(eepromRequest.status_enu != EEL_OK) {	 
-     P6_bit.no3 = 0;
-     while(1);
-   }
-   
-   // check the status, should return EEL_DRIVER_IDLE
-   EEL_GetDriverStatus(&eelDriverStatus);    
-
-   // check the status, should return EEL_DRIVER_IDLE
-   eepromStatus = EEL_GetSpace(&eelFreeSpace);    
-
-   // now an endless loop
-	while(1) {	  
-	  
-	  /* some fancy toggling on success */
-	  P6_bit.no3 = ~ P6_bit.no3;
-	  for(i=0;i<100000;i++);
-	  P6_bit.no3 = ~ P6_bit.no3;
-	  for(i=0;i<100000;i++);
-	  P6_bit.no3 = ~ P6_bit.no3;
-	  for(i=0;i<100000;i++);
-	  P6_bit.no3 = ~ P6_bit.no3;
-	  for(i=0;i<100000;i++);			  
-    }
+  	// test finished, close the libs
+	EEL_Close();	
+	FDL_Close();
     
-    /* End user code. Do not edit comment generated here */
+	
+  
 }
 
-
-/***********************************************************************************************************************
-* Function Name: R_MAIN_UserInit
-* Description  : This function adds user code before implementing main function.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_MAIN_UserInit(void)
-{
-    /* Start user code. Do not edit comment generated here */
-    EI();
-    /* End user code. Do not edit comment generated here */
-}
-
-/* Start user code for adding. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
